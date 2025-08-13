@@ -1,9 +1,9 @@
 type Proyek {
     id: ID!
-    kode: String
-    nama: String
+    kode: String!
+    nama: String!
     tanggal: Date
-    nama_sekolah: String
+    nama_sekolah: String!
     created_at: DateTime
     updated_at: DateTime
     deleted_at: DateTime
@@ -32,10 +32,10 @@ extend type Query {
 }
 
 extend type Mutation {
-    CreateProyek(input: CreateProyekInput! @spread): Proyek
+    createProyek(input: CreateProyekInput! @spread): Proyek
     @create(model: "App\\Models\\Proyek\\Proyek")
 
-    UpdateProyek(id: ID! @eq, input: UpdateProyekInput! @spread): Proyek
+    updateProyek(id: ID! @eq, input: UpdateProyekInput! @spread): Proyek
     @update(model: "App\\Models\\Proyek\\Proyek")
 
     deleteProyek(id: ID! @eq): Proyek

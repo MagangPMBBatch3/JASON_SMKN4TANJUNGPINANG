@@ -5,7 +5,7 @@ namespace App\GraphQL\Proyek\Queries;
 use App\Models\Proyek\Proyek;
 
 class ProyekQuery {
-    public function getProyek($_, array $args)
+    public function getProyeks($_, array $args)
     {
         $query = Proyek::query();
 

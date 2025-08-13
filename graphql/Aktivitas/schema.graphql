@@ -34,7 +34,7 @@ extend type Mutation {
     createAktivitas(input: CreateAktivitasInput! @spread): Aktivitas
     @create(model: "App\\Models\\Aktivitas\\Aktivitas")
 
-    UpdateAktivitas(
+    updateAktivitas(
         id: ID! @eq(key: "id"),
         input: UpdateAktivitasInput! @spread
     ): Aktivitas

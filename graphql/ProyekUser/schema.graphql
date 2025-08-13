@@ -6,7 +6,7 @@ type ProyekUser {
     updated_at: DateTime
     deleted_at: DateTime
 
-    users_profile: UserProfile @belongsTo
+    user_profile: UserProfile @belongsTo
     proyek: Proyek @belongsTo
 }
 

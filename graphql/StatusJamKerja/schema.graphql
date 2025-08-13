@@ -26,10 +26,10 @@ extend type Query {
 }
 
 extend type Mutation {
-    CreateStatusJamKerja(input: CreateStatusJamKerjaInput! @spread): StatusJamKerja
+    createStatusJamKerja(input: CreateStatusJamKerjaInput! @spread): StatusJamKerja
     @create(model: "App\\Models\\StatusJamKerja\\StatusJamKerja")
 
-    UpdateStatusJamKerja(
+    updateStatusJamKerja(
         id: ID! @eq(key: "id"),
         input: UpdateStatusJamKerjaInput! @spread
     ): StatusJamKerja

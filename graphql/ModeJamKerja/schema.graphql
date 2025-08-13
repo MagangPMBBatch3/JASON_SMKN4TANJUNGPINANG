@@ -15,7 +15,7 @@ input UpdateModeJamKerjaInput {
 }
 
 extend type Query {
-    allModeJamKerja: [ModeJamKerja!]!
+    allModeJamKerja: [ModeJamKerja!]! 
     @all(model: "App\\Models\\ModeJamKerja\\ModeJamKerja")
 
     ModeJamKerja(id: ID! @eq(key: "id")) : ModeJamKerja

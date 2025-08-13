@@ -1,4 +1,4 @@
-type keterangan {
+type Keterangan {
     id: ID!
     bagian_id: ID!
     proyek_id: ID!
@@ -24,7 +24,7 @@ input UpdateKeteranganInput {
 }
 
 extend type Query {
-    allKeterangan: [keterangan!]!
+    allKeterangan: [Keterangan!]!
     @all(model: "App\\Models\\Keterangan\\Keterangan")
 
     Keterangan(id: ID! @eq(key: "id")) : Keterangan
@@ -35,7 +35,7 @@ extend type Query {
 }
 
 extend type Mutation {
-    create(input: CreateKeteranganInput! @spread): Keterangan
+    createKeterangan(input: CreateKeteranganInput! @spread): Keterangan
     @create(model: "App\\Models\\Keterangan\\Keterangan")
 
     updateKeterangan(

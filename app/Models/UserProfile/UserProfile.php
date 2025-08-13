@@ -9,7 +9,9 @@ class UserProfile extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'users_profile';
+    protected $table = 'user_profile';
+
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'user_id',

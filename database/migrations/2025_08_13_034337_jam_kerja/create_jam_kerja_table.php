@@ -13,7 +13,7 @@ return new class extends Migration
     {
          Schema::create('jam_kerja', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_profile_id')->nullable()->constrained('users_profile')->onUpdate('cascade')->nullOnDelete();
+            $table->foreignId('users_profile_id')->constrained('user_profile')->onUpdate('cascade')->onDelete('cascade');
             $table->string('no_wbs', 50);
             $table->string('kode_proyek', 50)->unique();
             $table->foreignId('proyek_id')->nullable()->constrained('proyek')->onUpdate('cascade')->nullOnDelete();

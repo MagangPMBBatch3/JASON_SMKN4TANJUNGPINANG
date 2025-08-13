@@ -26,7 +26,7 @@ extend type Query {
 }
 
 extend type Mutation {
-    createJenisPesan(input: CreateLevelInput! @spread): JenisPesan
+    createJenisPesan(input: CreateJenisPesanInput! @spread): JenisPesan
     @create(model: "App\\Models\\JenisPesan\\JenisPesan")
 
     updateJenisPesan(

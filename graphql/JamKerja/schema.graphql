@@ -1,6 +1,6 @@
-type Aktivitas {
+type JamKerja {
     id: ID!
-    users_profile_id_id: ID!
+    users_profile_id: ID!
     no_wbs: String!
     kode_proyek: String!
     aktivitas_id: ID!
@@ -19,15 +19,27 @@ type Aktivitas {
 }
 
 input CreateJamKerjaInput {
-    bagian_id: ID!
+    users_profile_id: ID!
     no_wbs: String!
-    nama: String!
+    kode_proyek: String!
+    aktivitas_id: ID!
+    tanggal: Date
+    jumlah_jam: Float
+    keterangan: String
+    status_id: ID!
+    mode_id: ID!
 
 }
 input UpdateJamKerjaInput {
-    bagian_id: ID!
+    users_profile_id: ID!
     no_wbs: String!
-    nama: String!
+    kode_proyek: String!
+    aktivitas_id: ID!
+    tanggal: Date
+    jumlah_jam: Float
+    keterangan: String
+    status_id: ID!
+    mode_id: ID!
 }
 
 extend type Query {
@@ -45,7 +57,7 @@ extend type Mutation {
     createJamKerja(input: CreateJamKerjaInput! @spread): JamKerja
     @create(model: "App\\Models\\JamKerja\\JamKerja")
 
-    UpdateJamKerja(
+    updateJamKerja(
         id: ID! @eq(key: "id"),
         input: UpdateJamKerjaInput! @spread
     ): JamKerja
