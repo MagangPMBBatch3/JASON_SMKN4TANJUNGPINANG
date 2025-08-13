@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Models\JamKerja;
+
+use Illuminate\Database\Eloquent\Model;
+
+class JamKerja extends Model
+{
+    protected $table = 'jam_kerja'; // Specify the table name if it differs from the model name
+
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'users_profile_id',
+        'no_wbs',
+        'kode_proyek',
+        'proyek_id',
+        'aktivitas_id',
+        'tanggal',
+        'jumlah_jam',
+        'keterangan',
+        'status_id',
+        'mode_id',
+    ];
+     protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
+
+     public function mode_jam_kerja() {
+        return $this->belongsTo(\App\Models\ModeJamKerja\ModeJamKerja::class);
+    }
+
+    public function status_jam_kerja() {
+        return $this->belongsTo(\App\Models\StatusJamKerja\StatusJamKerja::class);
+    }
+    public function aktivitas() {
+        return $this->belongsTo(\App\Models\Aktivitas\Aktivitas::class);
+    }
+
+    public function users_profile() {
+        return $this->belongsTo(\App\Models\UserProfile\UserProfile::class);
+    }
+    public function proyek() {
+        return $this->belongsTo(\App\Models\Proyek\Proyek::class);
+    }
+
+
+}

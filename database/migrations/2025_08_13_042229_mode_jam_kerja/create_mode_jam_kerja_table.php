@@ -11,21 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('aktivitas', function (Blueprint $table) {
+        Schema::create('mode_jam_kerja', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bagian_id')->nullable()->constrained('bagian')->onUpdate('cascade')->nullOnDelete();
-            $table->string('no_wbs', 50);
-            $table->string('nama', 150)->unique();
+            $table->string('nama', 50)->unique();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('aktivitas');
+        Schema::dropIfExists('mode_jam_kerja');
     }
 };
