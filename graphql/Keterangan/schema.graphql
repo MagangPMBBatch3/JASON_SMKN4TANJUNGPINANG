@@ -1,0 +1,58 @@
+type keterangan {
+    id: ID!
+    bagian_id: ID!
+    proyek_id: ID!
+    tanggal: Date
+    created_at: DateTime
+    updated_at: DateTime
+    deleted_at: DateTime
+
+    proyek: Proyek @belongsTo
+    bagian: Bagian @belongsTo
+}
+
+input CreateKeteranganInput {
+    bagian_id: ID!
+    proyek_id: ID!
+    tanggal: Date
+}
+
+input UpdateKeteranganInput {
+    bagian_id: ID!
+    proyek_id: ID!
+    tanggal: Date
+}
+
+extend type Query {
+    allKeterangan: [keterangan!]!
+    @all(model: "App\\Models\\Keterangan\\Keterangan")
+
+    Keterangan(id: ID! @eq(key: "id")) : Keterangan
+    @find(model: "App\\Models\\Keterangan\\Keterangan")
+
+    KeteranganByNama(nama: String! @where(operator: "like", key: "nama")): [Keterangan!]!
+    @all(model: "App\\Models\\Keterangan\\Keterangan")
+}
+
+extend type Mutation {
+    create(input: CreateKeteranganInput! @spread): Keterangan
+    @create(model: "App\\Models\\Keterangan\\Keterangan")
+
+    updateKeterangan(
+        id: ID! @eq(key: "id"),
+        input: UpdateKeteranganInput! @spread
+    ): Keterangan
+    @update(model: "App\\Models\\Keterangan\\Keterangan")
+
+    deleteKeterangan(id: ID! @eq(key: "id")): Keterangan
+    @delete(model: "App\\Models\\Keterangan\\Keterangan")
+
+    restoreKeterangan(id: ID!): Keterangan
+    @field(resolver: "App\\GraphQL\\Keterangan\\Mutations\\KeteranganMutation@restore")
+
+    forceDeleteKeterangan(id: ID! @eq(key: "id")): Keterangan
+    @field(resolver: "App\\GraphQL\\Keterangan\\Mutations\\KeteranganMutation@forceDelete")
+}
+
+
+

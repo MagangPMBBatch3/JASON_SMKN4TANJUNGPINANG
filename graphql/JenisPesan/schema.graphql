@@ -1,0 +1,46 @@
+type JenisPesan {
+    id: ID!
+    nama: String!
+    created_at: DateTime
+    updated_at: DateTime
+    deleted_at: DateTime
+}
+
+input CreateJenisPesanInput {
+    nama: String!
+}
+
+input UpdateJenisPesanInput {
+    nama: String
+}
+
+extend type Query {
+    allJenisPesan: [JenisPesan!]!
+    @all(model: "App\\Models\\JenisPesan\\JenisPesan")
+
+    JenisPesan(id: ID! @eq(key: "id")) : JenisPesan
+    @find(model: "App\\Models\\JenisPesan\\JenisPesan")
+
+    JenisPesanByNama(nama: String! @where(operator: "like", key: "nama")): [JenisPesan!]!
+    @all(model: "App\\Models\\JenisPesan\\JenisPesan")
+}
+
+extend type Mutation {
+    createJenisPesan(input: CreateLevelInput! @spread): JenisPesan
+    @create(model: "App\\Models\\JenisPesan\\JenisPesan")
+
+    updateJenisPesan(
+        id: ID! @eq(key: "id"),
+        input: UpdateJenisPesanInput! @spread
+    ): JenisPesan
+    @update(model: "App\\Models\\JenisPesan\\JenisPesan")
+
+    deleteJenisPesan(id: ID! @eq(key: "id")): JenisPesan
+    @delete(model: "App\\Models\\JenisPesan\\JenisPesan")
+
+    restoreJenisPesan(id: ID!): JenisPesan
+    @field(resolver: "App\\GraphQL\\JenisPesan\\Mutations\\JenisPesanMutation@restore")
+
+    forceDeleteJenisPesan(id: ID! @eq(key: "id")): JenisPesan
+    @field(resolver: "App\\GraphQL\\JenisPesan\\Mutations\\JenisPesanMutation@forceDelete")
+}
