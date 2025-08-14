@@ -2,6 +2,7 @@ type User {
     id: ID!
     nama: String!
     email: String!
+    password: String!
     emailVerified: DateTime
     createdAt: DateTime
     updatedAt: DateTime
@@ -23,24 +24,24 @@ input UpdateUserInput {
 
 extend type Query {
     allUsers: [User!]!
-    @all(model: "App\\Models\\User\\User")
+    @all(model: "App\\Models\\User")
 
     user(id: ID! @eq(key: "id")): User
-    @find(model: "App\\Models\\User\\User")
+    @find(model: "App\\Models\\User")
 
     userByEmail(email: String! @where(operator: "like", key: "email")): [User!]!
-    @all(model: "App\\Models\\User\\User")
+    @all(model: "App\\Models\\User")
 }
 
 extend type Mutation {
     createUser(input: CreateUserInput! @spread): User
-    @create(model: "App\\Models\\User\\User")
+    @create(model: "App\\Models\\User")
 
     updateUser(id: ID! @eq(key: "id"), input: UpdateUserInput! @spread): User
-    @update(model: "App\\Models\\User\\User")
+    @update(model: "App\\Models\\User")
 
     deleteUser(id: ID! @eq(key: "id")): User
-    @delete(model: "App\\Models\\User\\User")
+    @delete(model: "App\\Models\\User")
 
     restoreUser(id: ID!): User
     @field(resolver: "App\\GraphQL\\User\\Mutations\\UserMutation@restore")

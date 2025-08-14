@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class AuthController {
     public function showLogin()
     {
@@ -30,7 +31,7 @@ class AuthController {
 
     public function dashboard()
     {
-        return view('dashboard.index'); 
+        return view('dashboard.index');
     }
 
     public function logout(Request $request)
@@ -40,5 +41,17 @@ class AuthController {
         $request->session()->regenerateToken();
         return redirect('/login');
     }
+
+    public function bagian()
+    {
+        return view('bagian.index');
+    }
+
+    public function level()
+    {
+        return view('level.index');
+    }
+
+
 }
 

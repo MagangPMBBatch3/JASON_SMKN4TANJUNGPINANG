@@ -25,7 +25,7 @@ async function loadData(queryType = "all") {
     }
 } else {
     query = `
-        query = {
+        query  {
         allBagian {
         id
         nama

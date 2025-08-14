@@ -1,11 +1,11 @@
 function openEditModal(id, nama) {
-    document.getElementById['editId'].value = id;
-    document.getElementById['editNama'].value = nama;
-    document.getElementById['modalEdit'].classList.remove('hidden');
+    document.getElementById('editId').value = id;
+    document.getElementById('editNama').value = nama;
+    document.getElementById('modalEdit').classList.remove('hidden');
 
 }
 function closeEditModal () {
-    document.getElementById['modalEdit'].classList.add('hidden');
+    document.getElementById('modalEdit').classList.add('hidden');
 }
 
 async function updateBagian() {
