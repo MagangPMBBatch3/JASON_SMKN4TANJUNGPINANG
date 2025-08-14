@@ -52,6 +52,11 @@ class AuthController {
         return view('level.index');
     }
 
+    public function status()
+    {
+        return view('status.index');
+    }
+
 
 }
 
