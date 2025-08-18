@@ -20,6 +20,7 @@ return new class extends Migration
             $table->dateTime('tgl_pesan');
             $table->foreignId('jenis_id')->nullable()->constrained('jenis_pesan')->onUpdate('cascade')->nullOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

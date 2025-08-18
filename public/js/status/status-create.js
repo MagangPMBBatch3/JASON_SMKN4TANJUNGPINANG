@@ -27,5 +27,5 @@ async function createStatus () {
     });
 
     closeAddStatusModal();
-    loadData();
+    loadStatusData();
 }

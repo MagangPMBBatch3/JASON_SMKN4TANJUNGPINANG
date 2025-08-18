@@ -18,6 +18,9 @@ extend type Query {
     allStatusJamKerja: [StatusJamKerja!]!
     @all(model: "App\\Models\\StatusJamKerja\\StatusJamKerja")
 
+    allStatusJamKerjaArsip: [StatusJamKerja!]!
+    @field(resolver: "App\\GraphQL\\StatusJamKerja\\Queries\\StatusJamKerjaQuery@allArsip")
+
     StatusJamKerja(id: ID! @eq(key: "id")) : StatusJamKerja
     @find(model: "App\\Models\\StatusJamKerja\\StatusJamKerja")
 

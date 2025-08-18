@@ -57,6 +57,31 @@ class AuthController {
         return view('status.index');
     }
 
+    public function user()
+    {
+        return view('user.index');
+    }
+
+    public function proyek()
+    {
+        return view('proyek.index');
+    }
+
+     public function jenis_pesan()
+    {
+        return view('jenis_pesan.index');
+    }
+
+    public function mode_jam_kerja()
+    {
+        return view('mode.index');
+    }
+
+    public function status_jam_kerja()
+    {
+        return view('statusjamkerja.index');
+    }
+
 
 }
 

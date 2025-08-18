@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('status_id')->nullable()->constrained('status_jam_kerja')->onUpdate('cascade')->nullOnDelete();
             $table->foreignId('mode_id')->nullable()->constrained('mode_jam_kerja')->onUpdate('cascade')->nullOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

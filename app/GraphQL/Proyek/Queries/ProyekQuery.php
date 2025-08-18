@@ -16,5 +16,12 @@ class ProyekQuery {
             ->orWhere('nama_sekolah', 'like', '%' . $args['search'] . '%');
         }
         return $query->get();
+
+
+    }
+
+    public function allArsip($_, array $args)
+    {
+        return Proyek::onlyTrashed()->get();
     }
 }

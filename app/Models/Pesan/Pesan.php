@@ -3,9 +3,11 @@
 namespace App\Models\Pesan;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pesan extends Model
 {
+    use SoftDeletes;
     protected $table = 'pesan'; // Specify the table name if it differs from the model name
 
     protected $primaryKey = 'id';

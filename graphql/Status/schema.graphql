@@ -18,6 +18,9 @@ extend type Query {
     allStatus: [Status!]!
     @all(model: "App\\Models\\Status\\Statuses")
 
+    allStatusArsip: [Status!]!
+    @field(resolver: "App\\GraphQL\\Status\\Queries\\StatusQuery@allArsip")
+
     status(id: ID! @eq(key: "id")): Status
     @find(model: "App\\Models\\Status\\Statuses")
 

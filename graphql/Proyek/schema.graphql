@@ -27,6 +27,9 @@ extend type Query {
     allProyeks: [Proyek!]!
     @all(model: "App\\Models\\Proyek\\Proyek")
 
+    allProyekArsip: [Proyek!]!
+    @field(resolver: "App\\GraphQL\\Proyek\\Queries\\ProyekQuery@allArsip")
+
     getProyeks(search: String): [Proyek!]!
     @field(resolver: "App\\GraphQL\\Proyek\\Queries\\ProyekQuery@getProyeks")
 }

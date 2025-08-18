@@ -26,6 +26,10 @@ extend type Query {
     allUsers: [User!]!
     @all(model: "App\\Models\\User")
 
+    allUserArsip: [User!]!
+    @field(resolver: "App\\GraphQL\\User\\Queries\\UserQuery@allArsip")
+
+
     user(id: ID! @eq(key: "id")): User
     @find(model: "App\\Models\\User")
 

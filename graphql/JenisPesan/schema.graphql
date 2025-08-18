@@ -18,6 +18,9 @@ extend type Query {
     allJenisPesan: [JenisPesan!]!
     @all(model: "App\\Models\\JenisPesan\\JenisPesan")
 
+    allJenisPesanArsip: [JenisPesan!]!
+    @field(resolver: "App\\GraphQL\\JenisPesan\\Queries\\JenisPesanQuery@allArsip")
+
     JenisPesan(id: ID! @eq(key: "id")) : JenisPesan
     @find(model: "App\\Models\\JenisPesan\\JenisPesan")
 

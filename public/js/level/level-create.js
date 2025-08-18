@@ -4,6 +4,7 @@ function openAddLevelModal () {
 
 function closeAddLevelModal () {
     document.getElementById('modalAddLevel').classList.add('hidden');
+    document.getElementById('addLevelNama').value = '';
 }
 
 async function createLevel() {
