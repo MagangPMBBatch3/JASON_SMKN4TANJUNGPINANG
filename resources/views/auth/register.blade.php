@@ -1,4 +1,4 @@
-<x-layouts.auth title="Login">
+<x-layouts.auth title="Register">
     <div class="container">
         <div class="wrapper">
             @if ($errors->any())
@@ -7,25 +7,27 @@
                 </div>
             @endif
 
-            <form action="/login" method="POST">
+            <form action="/register" method="POST">
                 @csrf
-                <h1>LOGIN</h1>
+                <h1>REGISTER</h1>
                 <div class="input-box">
-                    <input type="text" name="email" placeholder="Email" required>
+                    <input type="text" name="nama" placeholder="Nama" required autocomplete="off">
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="text" name="email" placeholder="Email" required autocomplete="off">
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="password" placeholder="Password" required autocomplete="off">
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="remember-forgot">
                     <label><input type="checkbox"> Remember me</label>
                     <a href="#">Forgot Password?</a>
                 </div>
-                <button type="submit" class="btn">Login</button>
-                <div class="register-link">
-                    <p>Don't have an account? <a href="{{ url('/register')}}">Register</a></p>
-                </div>
+                <button type="submit" class="btn">Register</button>
+
             </form>
         </div>
     </div>

@@ -4,13 +4,32 @@ namespace App\Http\Controllers\AuthController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\User;
 
 class AuthController {
     public function showLogin()
     {
         return view('auth.login');
     }
+
+    public function registerPost(Request $request)
+{
+    $validated = $request->validate([
+        'nama' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:6'
+    ]);
+
+    // Simpan user baru
+    User::create([
+        'nama' => $validated['nama'],
+        'email' => $validated['email'],
+        'password' => bcrypt($validated['password'])
+    ]);
+
+    // Redirect ke login dengan pesan sukses
+    return redirect('/login')->with('success', 'Registrasi berhasil, silakan login.');
+}
 
     public function login (Request $request)
     {
@@ -27,11 +46,6 @@ class AuthController {
         return back ()->withErrors([
             'email' => 'Email atau Password salah.',
         ]);
-    }
-
-    public function dashboard()
-    {
-        return view('dashboard.index');
     }
 
     public function logout(Request $request)
@@ -80,6 +94,16 @@ class AuthController {
     public function status_jam_kerja()
     {
         return view('statusjamkerja.index');
+    }
+
+    public function user_profile()
+    {
+        return view('userprofile.index');
+    }
+
+     public function register()
+    {
+        return view('auth.register');
     }
 
 
