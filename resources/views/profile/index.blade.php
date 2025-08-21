@@ -16,12 +16,12 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {{-- Profile Display Card --}}
         <div class="lg:col-span-1">
-            <div class="bg-white p-6 rounded-xl shadow-md">
+            <div class="bg-white p-8 rounded-xl shadow-md">
                 <h3 class="text-lg font-semibold text-gray-700 mb-6 text-center">Foto Profil</h3>
 
                 <div class="flex flex-col items-center">
                     <div class="relative">
-                       <img src="{{ $userProfile->foto ? asset('storage/'.$userProfile->foto) : asset('images/default.jpg') }}"
+                       <img src="{{ $userProfile->foto ? asset('storage/'.$userProfile->foto) : asset('storage/images/default.jpg') }}"
                             alt="Foto Profil"
                             class="w-32 h-32 rounded-full object-cover border-4 border-gray-200 shadow-lg"
                             id="profileImagePreview">
@@ -140,6 +140,6 @@
             }
         }
     </script>
-    <script src="{{ asset('js/userprofile.js') }}"></script>
-    <script src="{{ asset('js/userprofile-edit.js') }}"></script>
+    <script src="{{ asset('js/userprofile/userprofile.js') }}"></script>
+    <script src="{{ asset('js/userprofile/userprofile-edit.js') }}"></script>
 </x-layouts.main>

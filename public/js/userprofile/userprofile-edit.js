@@ -16,18 +16,15 @@
                  throw new Error('Server error during form submission');
              }
 
-             // Refresh profile data using GraphQL
-             await loadCurrentUserProfile();
 
-             // Reload the page to show the success message
-             window.location.reload();
+            window.location.href = '/profile';
+
+
+
          } catch (error) {
              console.error('Error updating profile:', error);
              alert('Gagal mengupdate profil. Silakan coba lagi.');
          }
      }
 
-     document.addEventListener('DOMContentLoaded', () => {
-         const form = document.getElementById('profileForm');
-         form.addEventListener('submit', updateUserProfile);
-     });
+    

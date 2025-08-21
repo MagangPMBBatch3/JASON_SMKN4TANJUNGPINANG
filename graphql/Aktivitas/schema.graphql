@@ -3,7 +3,10 @@ type Aktivitas {
     bagian_id: ID!
     no_wbs: String!
     nama: String!
-
+    created_at: DateTime
+    updated_at: DateTime
+    deleted_at: DateTime
+    
     bagian: Bagian @belongsTo
 }
 
@@ -22,6 +25,9 @@ input UpdateAktivitasInput {
 extend type Query {
     allAktivitas: [Aktivitas!]!
     @all(model: "App\\Models\\Aktivitas\\Aktivitas")
+
+    allAktivitasArsip: [Aktivitas!]!
+    @field(resolver: "App\\GraphQL\\Aktivitas\\Queries\\AktivitasQuery@allArsip")
 
     Aktivitas(id: ID! @eq(key: "id")) : Aktivitas
     @find(model: "App\\Models\\Aktivitas\\Aktivitas")

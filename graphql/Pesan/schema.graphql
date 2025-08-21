@@ -3,7 +3,7 @@ type Pesan {
     pengirim: String!
     penerima: String!
     isi: String!
-    parent_id: Int!
+    parent_id: Int
     tgl_pesan: DateTime
     jenis_id: ID!
     created_at: DateTime
@@ -16,15 +16,27 @@ type Pesan {
 input CreatePesanInput {
     pengirim: String!
     penerima: String!
-    isi: Text!
-    parent_id: ID!
+    isi: String!
+    parent_id: Int
+    tgl_pesan: DateTime
+    jenis_id: ID!
+}
+input UpdatePesanInput {
+    pengirim: String!
+    penerima: String!
+    isi: String!
+    parent_id: Int
     tgl_pesan: DateTime
     jenis_id: ID!
 }
 
 extend type Query {
-    allPesanUser: [Pesan!]!
+    allPesan: [Pesan!]!
     @all(model: "App\\Models\\Pesan\\Pesan")
+
+    allPesanArsip: [Pesan!]!
+    @field(resolver: "App\\GraphQL\\Pesan\\Queries\\PesanQuery@allArsip")
+
 
     Pesan(id: ID! @eq): Pesan
     @find(model: "App\\Models\\Pesan\\Pesan")

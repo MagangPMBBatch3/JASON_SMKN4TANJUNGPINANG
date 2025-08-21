@@ -3,11 +3,11 @@
 namespace App\Models\UserProfile;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class UserProfile extends Model
 {
-    use SoftDeletes;
+   
 
     protected $table = 'user_profile';
 

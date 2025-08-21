@@ -3,10 +3,10 @@ type User {
     nama: String!
     email: String!
     password: String!
-    emailVerified: DateTime
-    createdAt: DateTime
-    updatedAt: DateTime
-    deletedAt: DateTime
+    email_verified_at: DateTime
+    created_at: DateTime
+    updated_at: DateTime
+    deleted_at: DateTime
 }
 
 input CreateUserInput {

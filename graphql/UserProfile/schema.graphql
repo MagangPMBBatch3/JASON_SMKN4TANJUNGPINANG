@@ -25,8 +25,7 @@ input CreateUserProfileInput {
     alamat: String
     foto: String
     bagian_id: ID!
-    level_id: ID!
-    status_id: ID!
+
 }
 
 input UpdateUserProfileInput{

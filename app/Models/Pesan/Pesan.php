@@ -13,8 +13,7 @@ class Pesan extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'nama',
-        'pengiriman',
+        'pengirim',
         'penerima',
         'isi',
         'parent_id',
@@ -29,6 +28,6 @@ class Pesan extends Model
     ];
 
     public function jenis_pesan() {
-        return $this->belongsTo(\App\Models\JenisPesan\JenisPesan::class);
+        return $this->belongsTo(\App\Models\JenisPesan\JenisPesan::class,'jenis_id', 'id');
     }
 }

@@ -3,9 +3,12 @@
 namespace App\Models\Aktivitas;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Aktivitas extends Model
 {
+
+    use SoftDeletes;
     protected $table = 'aktivitas'; // Specify the table name if it differs from the model name
 
     protected $primaryKey = 'id';

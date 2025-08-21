@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('users_profile_id')->nullable()->constrained('user_profile')->onUpdate('cascade')->nullOnDelete();
             $table->foreignId('proyek_id')->nullable()->constrained('proyek')->onUpdate('cascade')->nullOnDelete();
-            $table->date('tanggal')->nullable();
+            $table->dateTime('tanggal')->nullable();
             $table->decimal('jam', 5, 2)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

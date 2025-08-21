@@ -65,6 +65,10 @@ class AuthController {
     {
         return view('level.index');
     }
+    public function pesan()
+    {
+        return view('pesan.index');
+    }
 
     public function status()
     {
@@ -104,6 +108,15 @@ class AuthController {
      public function register()
     {
         return view('auth.register');
+    }
+
+    public function aktivitas()
+    {
+        return view('aktivitas.index');
+    }
+     public function proyek_user()
+    {
+        return view('proyekuser.index');
     }
 
 

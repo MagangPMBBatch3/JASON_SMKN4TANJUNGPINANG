@@ -15,9 +15,17 @@ input CreateProyekUserInput {
     users_profile_id: ID!
 }
 
+input UpdateProyekUserInput {
+    proyek_id: ID!
+    users_profile_id: ID!
+}
+
 extend type Query {
     allProyekUser: [ProyekUser!]!
     @all(model: "App\\Models\\ProyekUser\\ProyekUser")
+
+    allProyekUserArsip: [ProyekUser!]!
+    @field(resolver: "App\\GraphQL\\ProyekUser\\Queries\\ProyekUserQuery@allArsip")
 
     ProyekUser(id: ID! @eq): ProyekUser
     @find(model: "App\\Models\\ProyekUser\\ProyekUser")

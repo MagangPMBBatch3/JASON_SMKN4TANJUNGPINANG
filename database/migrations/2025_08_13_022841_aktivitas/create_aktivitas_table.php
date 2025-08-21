@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('bagian_id')->nullable()->constrained('bagian')->onUpdate('cascade')->nullOnDelete();
             $table->string('no_wbs', 50);
             $table->string('nama', 150)->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

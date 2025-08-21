@@ -2,7 +2,7 @@ type JamPerTanggal {
     id: ID!
     users_profile_id: ID!
     proyek_id: ID!
-    tanggal: Date
+    tanggal: DateTime
     jam: Float
 
     proyek: Proyek @belongsTo
@@ -12,14 +12,14 @@ type JamPerTanggal {
 input CreateJamPerTanggalInput {
     users_profile_id: ID!
     proyek_id: ID!
-    tanggal: Date
+    tanggal: DateTime
     jam: Float
 
 }
 input UpdateJamPerTanggalInput {
     users_profile_id: ID!
     proyek_id: ID!
-    tanggal: Date
+    tanggal: DateTime
     jam: Float
 
 }
@@ -27,6 +27,9 @@ input UpdateJamPerTanggalInput {
 extend type Query {
     allJamPerTanggal: [JamPerTanggal!]!
     @all(model: "App\\Models\\JamPerTanggal\\JamPerTanggal")
+
+    allJamPerTanggalArsip: [JamPerTanggal!]!
+    @field(resolver: "App\\GraphQL\\JamPerTanggal\\Queries\\JamPerTanggalQuery@allArsip")
 
     JamPerTanggal(id: ID! @eq(key: "id")) : JamPerTanggal
     @find(model: "App\\Models\\JamPerTanggal\\JamPerTanggal")
