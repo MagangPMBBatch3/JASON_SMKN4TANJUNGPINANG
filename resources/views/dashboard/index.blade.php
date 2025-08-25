@@ -1,6 +1,10 @@
 <x-layouts.main title="Dashboard">
-    <x-slot name="pageTitle">Dashboard</x-slot>
+    <x-slot name="pageTitle">Dashboard
 
+     <img src="{{ $userProfile->foto ? asset('storage/'.$userProfile->foto) : asset('storage/images/default.jpg') }}"
+            alt="Foto Profil"
+            class="w-10 h-10 inline-block rounded-full object-cover border-2 border-blue-500 profile-img cursor-pointer">
+    </x-slot>
     <div class="bg-white p-6 rounded-xl shadow-md">
         <h2 class="text-2xl font-bold text-gray-800">Selamat Datang 🎉</h2>
         <p class="text-gray-600 mt-1">Anda login sebagai <strong>{{ Auth::user()->nama }}</strong></p>
@@ -11,12 +15,11 @@
         <div class="bg-white p-6 rounded-xl shadow-md max-w-md">
             <h3 class="text-lg font-semibold text-gray-700 mb-4">Profil Anda</h3>
 
-            @if($userProfile)
+           @if($userProfile)
                 <div class="flex items-center gap-4">
-                    <img src="{{ $userProfile->foto ? asset('storage/'.$userProfile->foto) : asset('images/default.jpg') }}"
+                    <img src="{{ $userProfile->foto ? asset('storage/'.$userProfile->foto) : asset('storage/images/default.jpg') }}"
                          alt="Foto Profil" width="150"
                          class="w-20 h-20 rounded-full object-cover border-2 border-gray-200">
-
                     <div>
                         <p><span class="font-semibold">Nama:</span> {{ $userProfile->nama_lengkap ?: '-' }}</p>
                         <p><span class="font-semibold">NRP:</span> {{ $userProfile->nrp ?: '-' }}</p>

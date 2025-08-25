@@ -24,7 +24,22 @@
                     </div>
                 </a>
             </li>
+
+
+    @if(auth()->user()->role === 'admin')
         <ul>
+             <a href="{{ route('members.index') }}"
+                   class="block py-2 hover:bg-blue-500 rounded px-2 {{ request()->routeIs('members.index') ? 'bg-blue-500' : '' }}">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        Member
+                    </div>
+                </a>
+            </li>
+    @endif
+         <ul>
             <li>
                 <li class="mt-2">
                       <h2 class="text-xl font-bold mb-6">Menu</h2>
@@ -44,6 +59,7 @@
 
 
            {{-- Master Data Dropdown --}}
+           @if(Auth::user()->role === 'admin')
             <li class="mt-4 mb-2">
                 <button type="button"
                         onclick="toggleMenu('masterDataMenu','masterArrow')"
@@ -114,7 +130,7 @@
                 </ul>
             </li>
         </ul>
-
+@endif
 
 
 
@@ -148,6 +164,12 @@
         <li class="mb-2">
             <a href="{{ route('proyek_user') }}" class="block p-2 rounded hover:bg-blue-500 text-sm">Proyek User</a>
         </li>
+         <li class="mb-2">
+            <a href="{{ route('jam_per_tanggal') }}" class="block p-2 rounded hover:bg-blue-500 text-sm">Jam Per Tanggal</a>
+        </li>
+         <li class="mb-2">
+            <a href="{{ route('keterangan') }}" class="block p-2 rounded hover:bg-blue-500 text-sm">Keterangan</a>
+        </li>
 
     </ul>
 </li>
@@ -155,10 +177,10 @@
 
 
         {{-- Logout Button --}}
-        <div class="absolute bottom-5 left-5 right-5">
+        <div class="p-5 mt-5 flex-1 overflow-y-auto">
             <form action="/logout" method="POST">
                 @csrf
-                <button type="submit" class="flex items-center justify-center py-2 px-4 bg-red-600 hover:bg-red-700 rounded transition duration-200">
+                <button type="submit" class="w-full flex items-center justify-center py-2 px-4 bg-red-600 hover:bg-red-700 rounded transition duration-200">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                     </svg>

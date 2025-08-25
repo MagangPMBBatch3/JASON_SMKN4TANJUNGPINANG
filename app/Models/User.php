@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\UserProfile\UserProfile;
 
 class User extends Authenticatable
 {
@@ -22,6 +23,7 @@ class User extends Authenticatable
         'nama',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -47,4 +49,9 @@ class User extends Authenticatable
             'deleted_at' => 'datetime',
         ];
     }
+
+   public function profile()
+{
+    return $this->hasOne(UserProfile::class);
+}
 }

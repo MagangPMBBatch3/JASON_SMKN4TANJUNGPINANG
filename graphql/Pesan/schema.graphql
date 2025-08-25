@@ -40,6 +40,9 @@ extend type Query {
 
     Pesan(id: ID! @eq): Pesan
     @find(model: "App\\Models\\Pesan\\Pesan")
+
+    PesanByPengirim(nama: String! @where(operator: "like", key: "pengirim")): [Pesan!]!
+    @all(model: "App\\Models\\Pesan\\Pesan")
 }
 
 extend type Mutation {

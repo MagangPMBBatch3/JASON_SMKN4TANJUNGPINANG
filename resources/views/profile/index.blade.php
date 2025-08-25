@@ -13,6 +13,12 @@
         </div>
     @endif
 
+    @if(Auth::user()->role === 'admin')
+   <p class="bg-green-100 border border-green-400 text-green-700 text-center px-4 py-3 rounded mb-6">Anda login sebagai Admin</p>
+@else
+   <p class="bg-green-100 border border-green-400 text-green-700 text-center px-4 py-3 rounded mb-6">Anda login sebagai User</p>
+@endif
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {{-- Profile Display Card --}}
         <div class="lg:col-span-1">
@@ -48,7 +54,8 @@
             <div class="bg-white p-6 rounded-xl shadow-md">
                 <h3 class="text-lg font-semibold text-gray-700 mb-6">Update Profil</h3>
 
-                <form id="profileForm" action="{{ route('userprofile.update') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+                <form id="profileForm" action="{{ route('userprofile.update', Auth::user()->role === 'admin' ? $userProfile->user_id : null) }}"
+                method="POST" enctype="multipart/form-data" class="space-y-6">
                     @csrf
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

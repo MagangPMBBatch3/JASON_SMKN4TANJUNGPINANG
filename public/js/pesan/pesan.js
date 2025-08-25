@@ -177,7 +177,7 @@ async function searchPesan () {
     } else {
         query = `
             query {
-                PesanByNama(nama: "%${keyword}%") {
+                PesanByPengirim(pengirim: "%${keyword}%") {
                     id
                      pengirim
                 penerima

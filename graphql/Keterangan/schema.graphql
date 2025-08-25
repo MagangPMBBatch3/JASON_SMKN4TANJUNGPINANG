@@ -2,7 +2,7 @@ type Keterangan {
     id: ID!
     bagian_id: ID!
     proyek_id: ID!
-    tanggal: Date
+    tanggal: DateTime
     created_at: DateTime
     updated_at: DateTime
     deleted_at: DateTime
@@ -14,18 +14,21 @@ type Keterangan {
 input CreateKeteranganInput {
     bagian_id: ID!
     proyek_id: ID!
-    tanggal: Date
+    tanggal: DateTime
 }
 
 input UpdateKeteranganInput {
     bagian_id: ID!
     proyek_id: ID!
-    tanggal: Date
+    tanggal: DateTime
 }
 
 extend type Query {
     allKeterangan: [Keterangan!]!
     @all(model: "App\\Models\\Keterangan\\Keterangan")
+
+    allKeteranganArsip: [Keterangan!]!
+    @field(resolver: "App\\GraphQL\\Keterangan\\Queries\\KeteranganQuery@allArsip")
 
     Keterangan(id: ID! @eq(key: "id")) : Keterangan
     @find(model: "App\\Models\\Keterangan\\Keterangan")

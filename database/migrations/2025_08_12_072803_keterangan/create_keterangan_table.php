@@ -15,8 +15,9 @@ return new class extends Migration
              $table->id();
              $table->foreignId('bagian_id')->nullable()->constrained('bagian')->onUpdate('cascade')->nullOnDelete();
              $table->foreignId('proyek_id')->nullable()->constrained('proyek')->onUpdate('cascade')->nullOnDelete();
-             $table->date('tanggal')->nullable();
+             $table->datetime('tanggal')->nullable();
              $table->timestamps();
+             $table->softDeletes();
         });
     }
 

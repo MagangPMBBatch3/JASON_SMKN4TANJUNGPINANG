@@ -4,6 +4,9 @@ type JamPerTanggal {
     proyek_id: ID!
     tanggal: DateTime
     jam: Float
+    created_at: DateTime
+    updated_at: DateTime
+    deleted_at: DateTime
 
     proyek: Proyek @belongsTo
     users_profile: UserProfile @belongsTo

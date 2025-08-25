@@ -18,23 +18,31 @@ class UserProfileController extends Controller
         return view('dashboard.index', compact('userProfile'));
     }
 
-    public function show()
-    {
-        // Get or create profile for profile page
+     public function show($id=null)
+     {
+        // Admin bisa lihat profil siapa saja, user biasa hanya profilnya sendiri
+         $targetUserId = (Auth::user()->role === 'admin' && $id)
+        ? $id
+        : Auth::id();
+
         $userProfile = UserProfile::firstOrCreate(
-            ['user_id' => Auth::id()],
-            [
-                'nama_lengkap' => '',
-                'nrp' => '',
-                'alamat' => '',
-                'foto' => ''
-            ]
-        );
+        ['user_id' => $targetUserId],
+        [
+            'nama_lengkap' => '',
+            'nrp' => '',
+            'alamat' => '',
+            'foto' => ''
+        ]
 
-        return view('profile.index', compact('userProfile'));
-    }
 
-    public function update(Request $request)
+    );
+
+    return view('profile.index', compact('userProfile'));
+
+}
+
+
+    public function update(Request $request, $id=null)
     {
         $request->validate([
             'nama_lengkap' => 'nullable|string|max:255',
@@ -43,7 +51,13 @@ class UserProfileController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120'
         ]);
 
-        $userProfile = UserProfile::firstOrCreate(['user_id' => Auth::id()]);
+       // Admin bisa edit siapa saja, user biasa hanya dirinya sendiri
+    $targetUserId = (Auth::user()->role === 'admin' && $id)
+        ? $id
+        : Auth::id();
+
+    $userProfile = UserProfile::firstOrCreate(['user_id' => $targetUserId]);
+
 
         // Handle file upload first
         $updateData = $request->only(['nama_lengkap', 'nrp', 'alamat']);
@@ -60,6 +74,7 @@ class UserProfileController extends Controller
 
         $userProfile->update($updateData);
 
-        return redirect()->route('profile')->with('success', 'Profil berhasil diupdate');
+        return redirect()->route('profile.ofUser', $targetUserId)
+        ->with('success', 'Profil berhasil diupdate');
     }
 }

@@ -9,6 +9,21 @@ type User {
     deleted_at: DateTime
 }
 
+type UserProfile {
+    id: ID!
+    user_id: ID!
+    nama_lengkap: String
+    nrp: String
+    alamat: String
+    foto: String
+}
+
+input RegisterUserInput {
+    nama: String!
+    email: String!
+    password: String!
+}
+
 input CreateUserInput {
     nama: String!
     email: String!
@@ -52,4 +67,7 @@ extend type Mutation {
 
     forceDeleteUser(id: ID!): User
     @field(resolver: "App\\GraphQL\\User\\Mutations\\UserMutation@forceDelete")
+
+    registerUser(input: RegisterUserInput! @spread): User
+    @field(resolver: "App\\GraphQL\\User\\Mutations\\UserMutation@register")
 }

@@ -12,25 +12,6 @@ class AuthController {
         return view('auth.login');
     }
 
-    public function registerPost(Request $request)
-{
-    $validated = $request->validate([
-        'nama' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|string|min:6'
-    ]);
-
-    // Simpan user baru
-    User::create([
-        'nama' => $validated['nama'],
-        'email' => $validated['email'],
-        'password' => bcrypt($validated['password'])
-    ]);
-
-    // Redirect ke login dengan pesan sukses
-    return redirect('/login')->with('success', 'Registrasi berhasil, silakan login.');
-}
-
     public function login (Request $request)
     {
         $credentials = $request->validate([
@@ -61,6 +42,11 @@ class AuthController {
         return view('bagian.index');
     }
 
+    public function jam_per_tanggal()
+    {
+        return view('jampertanggal.index');
+
+    }
     public function level()
     {
         return view('level.index');
@@ -118,6 +104,11 @@ class AuthController {
     {
         return view('proyekuser.index');
     }
+    public function keterangan()
+    {
+        return view('keterangan.index');
+    }
+
 
 
 }
