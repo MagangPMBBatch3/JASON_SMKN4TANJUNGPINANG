@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\UserProfile\UserProfile;
+use App\Models\Lembur\Lembur;
 
 class User extends Authenticatable
 {
@@ -53,5 +54,11 @@ class User extends Authenticatable
    public function profile()
 {
     return $this->hasOne(UserProfile::class);
+
+}
+
+    public function lembur()
+{
+    return $this->hasMany(\App\Models\Lembur\Lembur::class, 'user_id');
 }
 }

@@ -2,52 +2,48 @@ type Lembur {
     id: ID!
     users_profile_id: ID!
     proyek_id: ID!
-    tanggal: Date
-
+    tanggal: DateTime
+    deleted_at: DateTime
     proyek: Proyek @belongsTo
     users_profile: UserProfile @belongsTo
 }
 
+
+
 input CreateLemburInput {
     users_profile_id: ID!
     proyek_id: ID!
-    tanggal: Date
-
+    tanggal: DateTime
 }
+
 input UpdateLemburInput {
     users_profile_id: ID!
     proyek_id: ID!
-    tanggal: Date
-
+    tanggal: DateTime
 }
 
 extend type Query {
-    allLembur: [Lembur!]!
-    @all(model: "App\\Models\\Lembur\\Lembur")
+    allLembur(where: LemburWhereInput): [Lembur!]! @all(model: "App\\Models\\Lembur\\Lembur")
+    allLemburArsip: [Lembur!]! @field(resolver: "App\\GraphQL\\Lembur\\Queries\\LemburQuery@allArsip")
+    Lembur(id: ID! @eq(key: "id")): Lembur @find(model: "App\\Models\\Lembur\\Lembur")
+}
 
-    Lembur(id: ID! @eq(key: "id")) : Lembur
-    @find(model: "App\\Models\\Lembur\\Lembur")
+input LemburWhereInput {
+    users_profile: UserProfileWhereInput
+}
 
-    LemburByNama(nama: String! @where(operator: "like", key: "nama")): [Lembur!]!
-    @all(model: "App\\Models\\Lembur\\Lembur")
+input UserProfileWhereInput {
+    nama_lengkap: StringWhereInput
+}
+
+input StringWhereInput {
+    like: String
 }
 
 extend type Mutation {
-    createLembur(input: CreateLemburInput! @spread): Lembur
-    @create(model: "App\\Models\\Lembur\\Lembur")
-
-    updateLembur(
-        id: ID! @eq(key: "id"),
-        input: UpdateLemburInput! @spread
-    ): Lembur
-    @update(model: "App\\Models\\Lembur\\Lembur")
-
-    deleteLembur(id: ID! @eq(key: "id")): Lembur
-    @delete(model: "App\\Models\\Lembur\\Lembur")
-
-    restoreLembur(id: ID!): Lembur
-    @field(resolver: "App\\GraphQL\\Lembur\\Mutations\\LemburMutation@restore")
-
-    forceDeleteLembur(id: ID! @eq(key: "id")): Lembur
-    @field(resolver: "App\\GraphQL\\Lembur\\Mutations\\LemburMutation@forceDelete")
+    createLembur(input: CreateLemburInput! @spread): Lembur @create(model: "App\\Models\\Lembur\\Lembur")
+    updateLembur(id: ID! @eq(key: "id"), input: UpdateLemburInput! @spread): Lembur @update(model: "App\\Models\\Lembur\\Lembur")
+    deleteLembur(id: ID! @eq(key: "id")): Lembur @delete(model: "App\\Models\\Lembur\\Lembur")
+    restoreLembur(id: ID!): Lembur @field(resolver: "App\\GraphQL\\Lembur\\Mutations\\LemburMutation@restore")
+    forceDeleteLembur(id: ID! @eq(key: "id")): Lembur @field(resolver: "App\\GraphQL\\Lembur\\Mutations\\LemburMutation@forceDelete")
 }

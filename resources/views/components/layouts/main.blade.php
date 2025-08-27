@@ -174,7 +174,16 @@
     </ul>
 </li>
 
-
+         <a href="/lembur"
+                   class="block py-2 hover:bg-blue-500 rounded px-2 {{ request()->is('lembur') ? 'bg-blue-500' : '' }}">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h2a2 2 0 012 2v6H8V5z"></path>
+                        </svg>
+                        Lembur
+                    </div>
+                </a>
 
         {{-- Logout Button --}}
         <div class="p-5 mt-5 flex-1 overflow-y-auto">

@@ -7,15 +7,32 @@ use Illuminate\Routing\Controller;
 use App\Models\UserProfile\UserProfile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+use App\Models\Proyek\Proyek;
+use App\Models\Lembur\Lembur;
+use App\Models\Bagian\Bagians;
+use App\Models\Level\Level;
 
 class UserProfileController extends Controller
 {
     public function index()
     {
-        // Only get existing profile for dashboard, don't create if doesn't exist
+
+        $totalProyek = Proyek::count();
+        $totalUser = User::where('role', 'user')->count();
+        $totalLembur = Lembur::count();
+
         $userProfile = UserProfile::where('user_id', Auth::id())->first();
 
-        return view('dashboard.index', compact('userProfile'));
+        return view('dashboard.index', compact(
+            'totalProyek',
+            'totalUser',
+            'userProfile',
+            'totalLembur'
+
+        ));
+
+
     }
 
      public function show($id=null)
@@ -25,19 +42,23 @@ class UserProfileController extends Controller
         ? $id
         : Auth::id();
 
+
+
         $userProfile = UserProfile::firstOrCreate(
         ['user_id' => $targetUserId],
         [
             'nama_lengkap' => '',
             'nrp' => '',
             'alamat' => '',
+            'bagian_id' => '',
+            'level_id' => '',
             'foto' => ''
         ]
-
-
     );
+    $bagians = Bagians::all();
+    $levels = Level::all();
 
-    return view('profile.index', compact('userProfile'));
+    return view('profile.index', compact('userProfile', 'bagians', 'levels'));
 
 }
 
@@ -48,6 +69,7 @@ class UserProfileController extends Controller
             'nama_lengkap' => 'nullable|string|max:255',
             'nrp' => 'nullable|string|max:50',
             'alamat' => 'nullable|string|max:500',
+            'bagian_id' => 'nullable|string|max:50',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120'
         ]);
 
@@ -60,7 +82,7 @@ class UserProfileController extends Controller
 
 
         // Handle file upload first
-        $updateData = $request->only(['nama_lengkap', 'nrp', 'alamat']);
+        $updateData = $request->only(['nama_lengkap', 'nrp', 'alamat', 'bagian_id', 'level']);
 
         if ($request->hasFile('foto')) {
             // Delete old photo if exists
@@ -77,4 +99,7 @@ class UserProfileController extends Controller
         return redirect()->route('profile.ofUser', $targetUserId)
         ->with('success', 'Profil berhasil diupdate');
     }
+
+
+
 }

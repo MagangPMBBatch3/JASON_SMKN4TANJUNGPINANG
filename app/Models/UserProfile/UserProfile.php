@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserProfile extends Model
 {
-   
+
 
     protected $table = 'user_profile';
 
@@ -44,4 +44,8 @@ class UserProfile extends Model
     public function status() {
         return $this->belongsTo(\App\Models\Status\Statuses::class);
     }
+    public function lemburs()
+{
+    return $this->hasMany(\App\Models\Lembur\Lembur::class, 'users_profile_id');
+}
 }

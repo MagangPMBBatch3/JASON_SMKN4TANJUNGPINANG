@@ -10,6 +10,7 @@ async function updateUserProfile(event) {
                 id
                 nama_lengkap
                 nrp
+                bagian_id
                 alamat
                 foto
             }
@@ -20,9 +21,9 @@ async function updateUserProfile(event) {
         input: {
             nama_lengkap: formData.get('nama_lengkap'),
             nrp: formData.get('nrp'),
+            bagian_id: formData.get('bagian_id'),
             alamat: formData.get('alamat'),
-            // Note: user_id, bagian_id, level_id, status_id should be handled server-side
-            // as they're not in the form
+
         }
     };
 

@@ -1,16 +1,28 @@
 <x-layouts.main title="Profil Saya">
     <x-slot name="pageTitle">Profil Saya</x-slot>
 
-    {{-- Success Message --}}
     @if(session('success'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
-            <div class="flex items-center">
-                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-                {{ session('success') }}
-            </div>
-        </div>
+    <div
+        x-data="{ show: true }"
+        x-show="show"
+        x-transition.opacity.duration.500ms
+        x-init="setTimeout(() => show = false, 3000)"
+        class="fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg alert"
+    >
+         {{ session('success') }}
+    </div>
+    @endif
+
+    @if(session('error'))
+    <div
+        x-data="{ show: true }"
+        x-show="show"
+        x-transition.opacity.duration.500ms
+        x-init="setTimeout(() => show = false, 3000)"
+        class="fixed top-5 right-5 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg alert"
+    >
+         {{ session('error') }}
+    </div>
     @endif
 
     @if(Auth::user()->role === 'admin')
@@ -78,6 +90,35 @@
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Bagian</label>
+                        <select name="bagian_id" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                <option value="">Pilih Bagian</option>
+                            @foreach($bagians as $bagian)
+                                <option value="{{ $bagian->id }}" {{ $userProfile->bagian_id == $bagian->id ? 'selected' : '' }}>
+                                {{ $bagian->nama }}
+                                </option>
+                            @endforeach
+                        </select>
+                            @error('bagian_id')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                         <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Level</label>
+                        <select name="bagian_id" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                <option value="">Pilih Level</option>
+                            @foreach($levels as $level)
+                                <option value="{{ $level->id }}" {{ $userProfile->level_id == $level->id ? 'selected' : '' }}>
+                                {{ $level->nama }}
+                                </option>
+                            @endforeach
+                        </select>
+                            @error('level_id')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
                     </div>
 
                     <div>
@@ -89,6 +130,8 @@
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
+
+
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Foto Profil</label>
@@ -149,4 +192,5 @@
     </script>
     <script src="{{ asset('js/userprofile/userprofile.js') }}"></script>
     <script src="{{ asset('js/userprofile/userprofile-edit.js') }}"></script>
+    {{-- <script src="{{ asset('js/userprofile/userprofile-create.js') }}"></script> --}}
 </x-layouts.main>

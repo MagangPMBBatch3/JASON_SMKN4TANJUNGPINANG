@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController\AuthController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\LemburController;
 
 
 Route::get('/login', [AuthController::class, 'showLogin']) ->name('login');
@@ -27,10 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/status_jam_kerja', [AuthController::class, 'status_jam_kerja'])->name('status_jam_kerja');
     Route::get('/keterangan', [AuthController::class, 'keterangan'])->name('keterangan');
 
+
     Route::get('/dashboard', [UserProfileController::class, 'index'])->name('dashboard');
 
     Route::get('profile', [UserProfileController::class, 'show'])->name('profile');
-    Route::post('/userprofile/update', [UserProfileController::class, 'update'])->name('userprofile.update');
+    Route::post('/userprofile/update/{id?}', [UserProfileController::class, 'update'])->name('userprofile.update');
 
 
     Route::get('/aktivitas', [AuthController::class, 'aktivitas'])->name('aktivitas');
@@ -39,6 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::get('profile/{id}', [UserProfileController::class, 'show'])->name('profile.ofUser');
 
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
+    Route::delete('/members/{id}', [MemberController::class, 'destroy'])->name('members.destroy');
+
+    Route::get('/lembur', [LemburController::class, 'index'])->name('lembur');
 });
 
  Route::get('/register', [AuthController::class, 'register'])->name('register');

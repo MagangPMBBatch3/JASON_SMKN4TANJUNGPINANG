@@ -25,6 +25,16 @@
                class="mt-4 bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
                Lihat Profil
             </a>
+
+            <form action="{{ route('members.destroy', $user->id) }}" method="POST" class="mt-2">
+                @csrf
+                 @method('DELETE')
+                <button type="submit"
+                    onclick="return confirm('Yakin mau hapus member ini?')"
+                    class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">
+                Hapus
+                </button>
+            </form>
         </div>
             @endforeach
         </div>

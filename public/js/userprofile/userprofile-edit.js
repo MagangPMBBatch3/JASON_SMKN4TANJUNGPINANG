@@ -1,5 +1,4 @@
-
-     async function updateUserProfile(event) {
+async function updateUserProfile(event) {
          event.preventDefault();
 
          const form = document.getElementById('profileForm');
@@ -27,4 +26,4 @@
          }
      }
 
-    
+

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\AuthController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
 class AuthController {
     public function showLogin()
@@ -109,6 +108,7 @@ class AuthController {
         return view('keterangan.index');
     }
 
+     
 
 
 }
