@@ -25,5 +25,3 @@ async function updateUserProfile(event) {
              alert('Gagal mengupdate profil. Silakan coba lagi.');
          }
      }
-
-

@@ -12,6 +12,7 @@ use App\Models\Proyek\Proyek;
 use App\Models\Lembur\Lembur;
 use App\Models\Bagian\Bagians;
 use App\Models\Level\Level;
+use App\Models\Status\Statuses;
 
 class UserProfileController extends Controller
 {
@@ -52,13 +53,15 @@ class UserProfileController extends Controller
             'alamat' => '',
             'bagian_id' => '',
             'level_id' => '',
+            'status_id' => '',
             'foto' => ''
         ]
     );
     $bagians = Bagians::all();
     $levels = Level::all();
+    $statuses = Statuses::all();
 
-    return view('profile.index', compact('userProfile', 'bagians', 'levels'));
+    return view('profile.index', compact('userProfile', 'bagians', 'levels', 'statuses'));
 
 }
 
@@ -70,6 +73,8 @@ class UserProfileController extends Controller
             'nrp' => 'nullable|string|max:50',
             'alamat' => 'nullable|string|max:500',
             'bagian_id' => 'nullable|string|max:50',
+            'level_id' => 'nullable|string|max:50',
+            'status_id' => 'nullable|string|max:50',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120'
         ]);
 
@@ -82,7 +87,7 @@ class UserProfileController extends Controller
 
 
         // Handle file upload first
-        $updateData = $request->only(['nama_lengkap', 'nrp', 'alamat', 'bagian_id', 'level']);
+        $updateData = $request->only(['nama_lengkap', 'nrp', 'alamat', 'bagian_id', 'level_id', 'status_id']);
 
         if ($request->hasFile('foto')) {
             // Delete old photo if exists
@@ -98,6 +103,33 @@ class UserProfileController extends Controller
 
         return redirect()->route('profile.ofUser', $targetUserId)
         ->with('success', 'Profil berhasil diupdate');
+    }
+
+    public function edit($id = null)
+    {
+        // Admin bisa edit siapa saja, user biasa hanya dirinya sendiri
+        $targetUserId = (Auth::user()->role === 'admin' && $id)
+            ? $id
+            : Auth::id();
+
+        $userProfile = UserProfile::firstOrCreate(
+            ['user_id' => $targetUserId],
+            [
+                'nama_lengkap' => '',
+                'nrp' => '',
+                'alamat' => '',
+                'bagian_id' => '',
+                'level_id' => '',
+                'status_id' => '',
+                'foto' => ''
+            ]
+        );
+
+        $bagians = Bagians::all();
+        $levels = Level::all();
+        $statuses = Statuses::all();
+
+        return view('profile.modal-edit', compact('userProfile', 'bagians', 'levels', 'statuses'));
     }
 
 

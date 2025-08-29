@@ -2677,16 +2677,16 @@
         },
         {
             "name": "nuwave/lighthouse",
-            "version": "v6.62.2",
+            "version": "v6.62.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nuwave/lighthouse.git",
-                "reference": "f6cb9c828a2d877b862f24599652c2b06636df2b"
+                "reference": "74dbc61a68580563afe4d75e6e7c1b546827b131"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nuwave/lighthouse/zipball/f6cb9c828a2d877b862f24599652c2b06636df2b",
-                "reference": "f6cb9c828a2d877b862f24599652c2b06636df2b",
+                "url": "https://api.github.com/repos/nuwave/lighthouse/zipball/74dbc61a68580563afe4d75e6e7c1b546827b131",
+                "reference": "74dbc61a68580563afe4d75e6e7c1b546827b131",
                 "shasum": ""
             },
             "require": {
@@ -2803,7 +2803,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-07-23T10:46:42+00:00"
+            "time": "2025-08-22T08:12:23+00:00"
         },
         {
             "name": "phpoption/phpoption",

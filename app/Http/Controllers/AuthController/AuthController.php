@@ -107,9 +107,4 @@ class AuthController {
     {
         return view('keterangan.index');
     }
-
-     
-
-
 }
-
