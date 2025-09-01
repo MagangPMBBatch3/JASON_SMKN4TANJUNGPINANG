@@ -167,8 +167,11 @@
          <li class="mb-2">
             <a href="{{ route('jam_per_tanggal') }}" class="block p-2 rounded hover:bg-blue-500 text-sm">Jam Per Tanggal</a>
         </li>
-         <li class="mb-2">
+        <li class="mb-2">
             <a href="{{ route('keterangan') }}" class="block p-2 rounded hover:bg-blue-500 text-sm">Keterangan</a>
+        </li>
+        <li class="mb-2">
+            <a href="{{ route('jam_kerja') }}" class="block p-2 rounded hover:bg-blue-500 text-sm">Jam Kerja</a>
         </li>
 
     </ul>

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('kode_proyek', 50)->unique();
             $table->foreignId('proyek_id')->nullable()->constrained('proyek')->onUpdate('cascade')->nullOnDelete();
             $table->foreignId('aktivitas_id')->nullable()->constrained('aktivitas')->onUpdate('cascade')->nullOnDelete();
-            $table->date('tanggal');
+            $table->datetime('tanggal');
             $table->decimal('jumlah_jam', 5, 2);
             $table->text('keterangan');
             $table->foreignId('status_id')->nullable()->constrained('status_jam_kerja')->onUpdate('cascade')->nullOnDelete();

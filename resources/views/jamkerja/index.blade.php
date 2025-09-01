@@ -1,11 +1,11 @@
-<x-layouts.main title="Data Keterangan">
+<x-layouts.main title="Data Jam Kerja">
     <div class="bg-white p-4 rounded shadow w-full">
-        <h1 class="text-2xl font-bold mb-4">Data Keterangan</h1>
+        <h1 class="text-2xl font-bold mb-4">Data Jam Kerja</h1>
 
         <div class="flex justify-between mb-4">
-            <input type="text" id="searchKeterangan" placeholder="Cari ID atau Nama..."
-                class="border p-2 rounded w-64" oninput="searchKeterangan()">
-            <button onclick="openAddKeteranganModal()"
+            <input type="text" id="searchJamKerja" placeholder="Cari ID atau Nama..."
+                class="border p-2 rounded w-64" oninput="searchJamKerja()">
+            <button onclick="openAddJamKerjaModal()"
                 class="bg-blue-500 text-white px-4 py-2 rounded">
                 Tambah Data
             </button>
@@ -27,13 +27,20 @@
             <thead class="bg-gray-200">
                 <tr>
                     <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Nama Bagian</th>
-                    <th class="p-2 border">Nama Proyek</th>
+                    <th class="p-2 border">User Profile</th>
+                    <th class="p-2 border">No Wbs</th>
+                    <th class="p-2 border">Kode Proyek</th>
+                    <th class="p-2 border">Proyek ID</th>
+                    <th class="p-2 border">Aktivitas ID</th>
                     <th class="p-2 border">Tanggal</th>
+                    <th class="p-2 border">Jumlah Jam</th>
+                    <th class="p-2 border">Keterangan</th>
+                    <th class="p-2 border">Status ID</th>
+                    <th class="p-2 border">Mode ID</th>
                     <th class="p-2 border">Aksi</th>
                 </tr>
             </thead>
-            <tbody id="dataKeterangan"></tbody>
+            <tbody id="dataJamKerja"></tbody>
         </table>
     </div>
 
@@ -42,22 +49,29 @@
             <thead class="bg-gray-200">
                 <tr>
                     <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Nama Bagian</th>
-                    <th class="p-2 border">Nama Proyek</th>
+                    <th class="p-2 border">User Profile</th>
+                    <th class="p-2 border">No Wbs</th>
+                    <th class="p-2 border">Kode Proyek</th>
+                    <th class="p-2 border">Proyek ID</th>
+                    <th class="p-2 border">Aktivitas ID</th>
                     <th class="p-2 border">Tanggal</th>
+                    <th class="p-2 border">Jumlah Jam</th>
+                    <th class="p-2 border">Keterangan</th>
+                    <th class="p-2 border">Status ID</th>
+                    <th class="p-2 border">Mode ID</th>
                     <th class="p-2 border">Aksi</th>
                 </tr>
             </thead>
-            <tbody id="dataKeteranganArsip"></tbody>
+            <tbody id="dataJamKerjaArsip"></tbody>
         </table>
     </div>
 
-    @include('components.Keterangan.modal-add')
-    @include("components.Keterangan.modal-edit")
+    @include('components.JamKerja.modal-add')
+    @include("components.JamKerja.modal-edit")
 
-    <script src="{{ asset('js/Keterangan/Keterangan.js') }}"></script>
-    <script src="{{ asset('js/Keterangan/Keterangan-create.js') }}"></script>
-    <script src="{{ asset('js/Keterangan/Keterangan-edit.js') }}"></script>
+    <script src="{{ asset('js/JamKerja/JamKerja.js') }}"></script>
+    <script src="{{ asset('js/JamKerja/JamKerja-create.js') }}"></script>
+    <script src="{{ asset('js/JamKerja/JamKerja-edit.js') }}"></script>
 
     <script>
         function showTab(tab) {

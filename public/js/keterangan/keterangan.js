@@ -4,10 +4,12 @@ async function loadKeteranganData() {
             allKeterangan {
                 id
                 bagian {
-                nama
+                    id
+                    nama
                 }
                 proyek {
-                nama
+                    id
+                    nama
                 }
                 tanggal
 
@@ -29,10 +31,12 @@ async function loadKeteranganData() {
             allKeteranganArsip{
                 id
                 bagian {
-                nama
+                    id
+                    nama
                 }
                 proyek {
-                nama
+                    id
+                    nama
                 }
                 tanggal
                 deleted_at
@@ -68,7 +72,7 @@ function renderKeteranganTable(Keterangan, tableId, isActive) {
         let actions = '';
         if (isActive) {
             actions = `
-                <button onclick="openEditKeteranganModal(${item.id}, '${item.bagian?.nama || '-'}', '${item.proyek?.nama || '-'}', '${item.tanggal}')" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
+                <button onclick="openEditKeteranganModal(${item.id}, '${item.bagian?.id || ''}', '${item.proyek?.id || ''}', '${item.tanggal}')" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
                 <button onclick="archiveKeterangan(${item.id})" class="bg-red-500 text-white px-2 py-1 rounded">Arsipkan</button>
             `;
     }

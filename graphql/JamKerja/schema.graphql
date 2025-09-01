@@ -3,8 +3,9 @@ type JamKerja {
     users_profile_id: ID!
     no_wbs: String!
     kode_proyek: String!
+    proyek_id: ID!
     aktivitas_id: ID!
-    tanggal: Date
+    tanggal: DateTime
     jumlah_jam: Float
     keterangan: String
     status_id: ID!
@@ -22,8 +23,9 @@ input CreateJamKerjaInput {
     users_profile_id: ID!
     no_wbs: String!
     kode_proyek: String!
+    proyek_id: ID!
     aktivitas_id: ID!
-    tanggal: Date
+    tanggal: DateTime
     jumlah_jam: Float
     keterangan: String
     status_id: ID!
@@ -34,8 +36,9 @@ input UpdateJamKerjaInput {
     users_profile_id: ID!
     no_wbs: String!
     kode_proyek: String!
+    proyek_id: ID!
     aktivitas_id: ID!
-    tanggal: Date
+    tanggal: DateTime
     jumlah_jam: Float
     keterangan: String
     status_id: ID!

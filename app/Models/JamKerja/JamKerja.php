@@ -3,9 +3,11 @@
 namespace App\Models\JamKerja;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class JamKerja extends Model
 {
+    use SoftDeletes;
     protected $table = 'jam_kerja'; // Specify the table name if it differs from the model name
 
     protected $primaryKey = 'id';
@@ -29,11 +31,11 @@ class JamKerja extends Model
     ];
 
      public function mode_jam_kerja() {
-        return $this->belongsTo(\App\Models\ModeJamKerja\ModeJamKerja::class);
+        return $this->belongsTo(\App\Models\ModeJamKerja\ModeJamKerja::class, 'status_id');
     }
 
     public function status_jam_kerja() {
-        return $this->belongsTo(\App\Models\StatusJamKerja\StatusJamKerja::class);
+        return $this->belongsTo(\App\Models\StatusJamKerja\StatusJamKerja::class, 'mode_id');
     }
     public function aktivitas() {
         return $this->belongsTo(\App\Models\Aktivitas\Aktivitas::class);

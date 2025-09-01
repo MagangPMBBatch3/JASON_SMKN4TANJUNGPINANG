@@ -41,6 +41,7 @@
 
 
         Route::get('/aktivitas', [AuthController::class, 'aktivitas'])->name('aktivitas');
+        Route::get('/jam_kerja', [AuthController::class, 'jam_kerja'])->name('jam_kerja');
         Route::get('/proyek_user', [AuthController::class, 'proyek_user'])->name('proyek_user');
 
 

@@ -10,8 +10,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\UserProfile\UserProfile;
 use App\Models\Lembur\Lembur;
 
+
 class User extends Authenticatable
 {
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, SoftDeletes;
 

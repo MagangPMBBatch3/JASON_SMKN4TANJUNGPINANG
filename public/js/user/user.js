@@ -24,7 +24,7 @@ async function loadUserData() {
                 id
                 nama
                 email
-                deletedAt
+                deleted_at
             }
         }
     `;

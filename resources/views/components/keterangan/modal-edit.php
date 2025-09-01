@@ -5,12 +5,12 @@
 
 
 
-              <select
-                    id="editKeteranganBagianid"
-                    name="bagian_id"
-                    class="w-full px-4 py-2 border rounded mb-4">
-                    <option value="">Profil User</option>
-                </select>
+<select
+    id="editKeteranganBagianId"
+    name="bagian_id"
+    class="w-full px-4 py-2 border rounded mb-4">
+    <option value="">Profil User</option>
+</select>
 
 
                 <select

@@ -85,11 +85,6 @@ class AuthController {
         return view('statusjamkerja.index');
     }
 
-    public function user_profile()
-    {
-        return view('userprofile.index');
-    }
-
      public function register()
     {
         return view('auth.register');
@@ -106,5 +101,9 @@ class AuthController {
     public function keterangan()
     {
         return view('keterangan.index');
+    }
+     public function jam_kerja()
+    {
+        return view('jamkerja.index');
     }
 }
