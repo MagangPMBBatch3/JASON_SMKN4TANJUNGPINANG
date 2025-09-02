@@ -3,7 +3,12 @@ type Lembur {
     users_profile_id: ID!
     proyek_id: ID!
     tanggal: DateTime
+    jam: String!
+    created_at: DateTime
+    updated_at: DateTime
     deleted_at: DateTime
+
+    
     proyek: Proyek @belongsTo
     users_profile: UserProfile @belongsTo
 }

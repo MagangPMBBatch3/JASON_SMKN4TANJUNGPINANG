@@ -92,7 +92,7 @@
      async function loadStatusOptions() {
         const query = `
             query {
-                allStatus {
+                allStatusJamKerja {
                     id
                     nama
                 }
@@ -114,8 +114,8 @@
             select.remove(1);
         }
 
-        data.data.allStatus.forEach((Status) => {
-            const option = new Option(Status.nama, Status.id);
+        data.data.allStatusJamKerja.forEach((StatusJamKerja) => {
+            const option = new Option(StatusJamKerja.nama, StatusJamKerja.id);
             select.add(option);
         });
     }
@@ -154,12 +154,12 @@
 
 
 
-    function openAddJamKerjaModal () {
-        loadUserProfileOptions();
-        loadProyekOptions();
-        loadAktivitasOptions();
-        loadStatusOptions();
-        loadModeOptions();
+    async function openAddJamKerjaModal () {
+       await loadUserProfileOptions();
+       await loadProyekOptions();
+       await loadAktivitasOptions();
+       await loadStatusOptions();
+       await loadModeOptions();
 
 
 
@@ -254,8 +254,8 @@
             mode_id: ${parseInt(ModeId)}
 
             }) {
-                 id
-                user_profile {
+                id
+                users_profile {
                 nama_lengkap
                 }
                 no_wbs

@@ -4,9 +4,11 @@ async function loadJamPerTanggalData() {
             allJamPerTanggal {
                 id
                 proyek {
+                id
                 nama
                 }
                 users_profile {
+                id
                 nama_lengkap
                 }
                 tanggal
@@ -69,7 +71,7 @@ function renderJamPerTanggalTable(JamPerTanggal, tableId, isActive) {
         let actions = '';
         if (isActive) {
             actions = `
-                <button onclick="openEditJamPerTanggalModal(${item.id}, '${item.users_profile?.nama_lengkap || '-'}', '${item.proyek?.nama || '-'}', '${item.tanggal}', '${item.jam}')" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
+                <button onclick="openEditJamPerTanggalModal(${item.id}, '${item.users_profile?.id || '-'}', '${item.proyek?.id || '-'}', '${item.tanggal}', '${item.jam}')" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
                 <button onclick="archiveJamPerTanggal(${item.id})" class="bg-red-500 text-white px-2 py-1 rounded">Arsipkan</button>
             `;
     }

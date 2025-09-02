@@ -42,7 +42,7 @@ class JamKerja extends Model
     }
 
     public function users_profile() {
-        return $this->belongsTo(\App\Models\UserProfile\UserProfile::class);
+        return $this->belongsTo(\App\Models\UserProfile\UserProfile::class, 'users_profile_id', 'id');
     }
     public function proyek() {
         return $this->belongsTo(\App\Models\Proyek\Proyek::class);

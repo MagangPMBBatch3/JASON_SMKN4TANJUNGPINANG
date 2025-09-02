@@ -1,9 +1,9 @@
     async function loadUserProfileOptionsForEdit() {
         const query = `
             query {
-                allUserProfile {
+                allUserProfiles {
                     id
-                    nama
+                    nama_lengkap
                 }
             }
         `;
@@ -23,8 +23,8 @@
             select.remove(1);
         }
 
-        data.data.allUserProfile.forEach((UserProfile) => {
-            const option = new Option(UserProfile.nama, UserProfile.id);
+        data.data.allUserProfiles.forEach((UserProfile) => {
+            const option = new Option(UserProfile.nama_lengkap, UserProfile.id);
             select.add(option);
         });
     }
@@ -92,7 +92,7 @@
      async function loadStatusOptionsForEdit() {
         const query = `
             query {
-                allStatus {
+                allStatusJamKerja {
                     id
                     nama
                 }
@@ -114,15 +114,15 @@
             select.remove(1);
         }
 
-        data.data.allStatus.forEach((Status) => {
-            const option = new Option(Status.nama, Status.id);
+        data.data.allStatusJamKerja.forEach((StatusJamKerja) => {
+            const option = new Option(StatusJamKerja.nama, StatusJamKerja.id);
             select.add(option);
         });
     }
      async function loadModeOptionsForEdit() {
         const query = `
             query {
-                allMode {
+                allModeJamKerja {
                     id
                     nama
                 }
@@ -144,8 +144,8 @@
             select.remove(1);
         }
 
-        data.data.allMode.forEach((Mode) => {
-            const option = new Option(Mode.nama, Mode.id);
+        data.data.allModeJamKerja.forEach((ModeJamKerja) => {
+            const option = new Option(ModeJamKerja.nama, ModeJamKerja.id);
             select.add(option);
         });
     }
@@ -154,30 +154,30 @@
 
 
 
-    function openEditJamKerjaModal () {
-        loadUserProfileOptionsForEdit();
-        loadProyekOptionsForEdit();
-        loadAktivitasOptionsForEdit();
-        loadStatusOptionsForEdit();
-        loadModeOptionsForEdit();
+   async function openEditJamKerjaModal (id, users_profile_id, no_wbs, kode_proyek, proyek_id, aktivitas_id, tanggal, jumlah_jam, keterangan, status_id, mode_id) {
+       await loadUserProfileOptionsForEdit();
+       await loadProyekOptionsForEdit();
+       await loadAktivitasOptionsForEdit();
+       await loadStatusOptionsForEdit();
+       await loadModeOptionsForEdit();
 
-        document.getElementById('editJamKerjaId').value = 'id';
-        document.getElementById('editJamKerjaUserProfileId').value = 'users_profile_id';
-        document.getElementById('editJamKerjaNoWbs').value = 'no_wbs';
-        document.getElementById('editJamKerjaKodeProyek').value = 'kode_proyek';
-        document.getElementById('editJamKerjaProyekId').value = 'proyek_id';
-        document.getElementById('editJamKerjaAktivitasId').value = 'aktivitas_id';
-        document.getElementById('editJamKerjaTanggal').value = 'tanggal';
-        document.getElementById('editJamKerjaJumlahJam').value = 'jumlah_jam';
-        document.getElementById('editJamKerjaKeterangan').value = 'keterangan';
-        document.getElementById('editJamKerjaStatusId').value = 'status_id';
-        document.getElementById('editJamKerjaModeId').value = 'mode_id';
+        document.getElementById('editJamKerjaId').value = id;
+        document.getElementById('editJamKerjaUserProfileId').value = users_profile_id;
+        document.getElementById('editJamKerjaNoWbs').value = no_wbs;
+        document.getElementById('editJamKerjaKodeProyek').value = kode_proyek;
+        document.getElementById('editJamKerjaProyekId').value = proyek_id;
+        document.getElementById('editJamKerjaAktivitasId').value = aktivitas_id;
+        document.getElementById('editJamKerjaTanggal').value = tanggal;
+        document.getElementById('editJamKerjaJumlahJam').value = jumlah_jam;
+        document.getElementById('editJamKerjaKeterangan').value = keterangan;
+        document.getElementById('editJamKerjaStatusId').value = status_id;
+        document.getElementById('editJamKerjaModeId').value = mode_id;
 
         document.getElementById('modalEditJamKerja').classList.remove('hidden');
     }
 
     function closeEditJamKerjaModal () {
-        document.getElementById('modalEditJamKerja').classList.edit('hidden');
+        document.getElementById('modalEditJamKerja').classList.add('hidden');
 
     }
 
@@ -255,7 +255,7 @@
 
             }) {
                  id
-                user_profile {
+                users_profile {
                 nama_lengkap
                 }
                 no_wbs
@@ -269,10 +269,10 @@
                 tanggal
                 jumlah_jam
                 keterangan
-                status {
+                status_jam_kerja {
                 nama
                 }
-                mode{
+                mode_jam_kerja{
                 nama
                 }
             }

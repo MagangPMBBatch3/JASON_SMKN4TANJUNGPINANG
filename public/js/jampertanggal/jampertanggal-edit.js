@@ -1,35 +1,3 @@
-async function loadProyekOptionsForEdit() {
-    const query = `
-        query {
-            allProyeks {
-                id
-                nama
-            }
-        }
-    `;
-
-    const response = await fetch("/graphql", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ query }),
-    });
-
-    const data = await response.json();
-    const select = document.getElementById("editJamPerTanggalProyekId");
-
-    while (select.options.length > 1) {
-        select.remove(1);
-    }
-
-    data.data.allProyeks.forEach((Proyek) => {
-        const option = new Option(Proyek.nama, Proyek.id);
-        select.add(option);
-    });
-}
-
-
 async function loadUserProfileOptionsForEdit() {
     const query = `
         query {
@@ -63,21 +31,48 @@ async function loadUserProfileOptionsForEdit() {
 
 
 
-async function openEditJamPerTanggalModal(id, proyek_id, users_profile_id, tanggal, jam) {
-    loadProyekOptionsForEdit();
-    loadUserProfileOptionsForEdit();
+async function loadProyekOptionsForEdit() {
+    const query = `
+        query {
+            allProyeks {
+                id
+                nama
+            }
+        }
+    `;
+
+    const response = await fetch("/graphql", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query }),
+    });
+
+    const data = await response.json();
+    const select = document.getElementById("editJamPerTanggalProyekId");
+
+    while (select.options.length > 1) {
+        select.remove(1);
+    }
+
+    data.data.allProyeks.forEach((Proyek) => {
+        const option = new Option(Proyek.nama, Proyek.id);
+        select.add(option);
+    });
+}
 
 
+async function openEditJamPerTanggalModal(id, users_profile_id, proyek_id, tanggal, jam) {
+    await loadProyekOptionsForEdit();
+    await loadUserProfileOptionsForEdit();
     document.getElementById('editJamPerTanggalId').value = id;
-    document.getElementById('editJamPerTanggalProyekId').value = proyek_id;
     document.getElementById('editJamPerTanggalUserProfileId').value = users_profile_id;
+    document.getElementById('editJamPerTanggalProyekId').value = proyek_id;
     document.getElementById('editJamPerTanggalTanggal').value = tanggal;
     document.getElementById('editJamPerTanggalJam').value = jam;
 
     document.getElementById('modalEditJamPerTanggal').classList.remove('hidden');
-
-
-
 
 
 }
@@ -97,12 +92,12 @@ async function updateJamPerTanggal () {
     // ubah ke format DB ("2025-08-21 09:35:00")
     let formattedDate = rawDate.replace("T", " ") + ":00";
 
-    if (!ProyekId) {
-        alert('Proyek ID harus diisi');
-        return;
-    }
      if (!UserProfileId) {
         alert('User Profile ID harus diisi');
+        return;
+    }
+     if (!ProyekId) {
+        alert('Proyek ID harus diisi');
         return;
     }
      if (!rawDate) {

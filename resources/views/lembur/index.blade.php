@@ -21,7 +21,7 @@
             <button onclick="showTab('arsip')" id="tabArsip"
                 class="px-4 py-2 bg-blue-300 text-black rounded-t">
                 Data Arsip
-            </button>
+            </button>   
         </div>
 
         {{-- TABEL AKTIF --}}

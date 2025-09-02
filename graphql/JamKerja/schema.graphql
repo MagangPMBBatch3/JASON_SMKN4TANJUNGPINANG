@@ -10,6 +10,9 @@ type JamKerja {
     keterangan: String
     status_id: ID!
     mode_id: ID!
+    created_at: DateTime
+    updated_at: DateTime
+    deleted_at: DateTime
 
     aktivitas: Aktivitas @belongsTo
     status_jam_kerja: StatusJamKerja @belongsTo
@@ -49,11 +52,26 @@ extend type Query {
     allJamKerja: [JamKerja!]!
     @all(model: "App\\Models\\JamKerja\\JamKerja")
 
+    allJamKerjaArsip: [JamKerja!]!
+    @field(resolver: "App\\GraphQL\\JamKerja\\Queries\\JamKerjaQuery@allArsip")
+
     JamKerja(id: ID! @eq(key: "id")) : JamKerja
     @find(model: "App\\Models\\JamKerja\\JamKerja")
 
     JamKerjaByNama(nama: String! @where(operator: "like", key: "nama")): [JamKerja!]!
     @all(model: "App\\Models\\JamKerja\\JamKerja")
+}
+
+input JamKerjaWhereInput {
+    users_profile: UserProfileWhereInput
+}
+
+input UserProfileWhereInput {
+    nama_lengkap: StringWhereInput
+}
+
+input StringWhereInput {
+    like: String
 }
 
 extend type Mutation {

@@ -32,7 +32,9 @@
             <div class="bg-white p-6 rounded-xl shadow-md">
                 <h3 class="text-lg font-semibold text-gray-700 mb-6">Update Profil</h3>
 
-                <form id="profileForm" action="{{ route('userprofile.update', Auth::user()->role === 'admin' ? $userProfile->user_id : null) }}"
+                <form id="profileForm"  action="{{ Auth::user()->role === 'admin'
+                ? route('userprofile.update', $userProfile->user_id)
+                : route('userprofile.update.self') }}"
                 method="POST" enctype="multipart/form-data" class="space-y-6">
                     @csrf
 

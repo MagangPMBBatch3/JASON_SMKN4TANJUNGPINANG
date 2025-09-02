@@ -4,6 +4,7 @@ async function loadLemburData() {
             allLembur {
                 id
                 proyek {
+                    id
                     nama
                 }
                 users_profile {
@@ -30,6 +31,7 @@ async function loadLemburData() {
             allLemburArsip {
                 id
                 proyek {
+                    id
                     nama
                 }
                 users_profile {
@@ -68,13 +70,26 @@ function renderLemburTable(lemburs, containerId, isActive) {
         let actions = '';
         if (isActive) {
             actions = `
-                <button onclick="archiveLembur(${item.id})"
-                        class="absolute top-3 right-3 bg-red-500 hover:bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10"
-                        title="Arsipkan">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
+             <div class="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
+                 <button onclick="openEditLemburModal(${item.id}, '${item.proyek?.id || ''}', '${item.users_profile?.id || ''}', '${item.tanggal || ''}')"
+                       class="bg-green-500 hover:bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center"
+                            title="Edit">
+                       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828
+                            2.828L11.828 15.828a2 2 0 01-1.414.586H9v-2.414a2 2
+                            0 01.586-1.414z" />
+                        </svg>
                 </button>
+                <button onclick="archiveLembur(${item.id})"
+                        class="bg-red-700 hover:bg-red-800 text-white rounded-full w-8 h-8 flex items-center justify-center"
+                            title="Arsipkan">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                             d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                </button>
+            </div>
             `;
         } else {
             actions = `
@@ -181,6 +196,7 @@ async function searchLembur() {
                 Lembur(id: ${keyword}) {
                     id
                     proyek {
+                        id
                         nama
                     }
                     users_profile {
@@ -209,6 +225,7 @@ async function searchLembur() {
                 allLembur(where: { users_profile: { nama_lengkap: { like: "%${keyword}%" } } }) {
                     id
                     proyek {
+                        id
                         nama
                     }
                     users_profile {

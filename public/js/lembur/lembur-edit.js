@@ -63,16 +63,16 @@ async function loadUserProfileOptionsForEdit() {
 
 
 
-async function openEditLemburModal(id, proyek_id, users_profile_id, tanggal, jam) {
-    loadProyekOptionsForEdit();
-    loadUserProfileOptionsForEdit();
+async function openEditLemburModal(id, proyek_id, users_profile_id, tanggal) {
+   await loadProyekOptionsForEdit();
+   await loadUserProfileOptionsForEdit();
 
 
     document.getElementById('editLemburId').value = id;
     document.getElementById('editLemburProyekId').value = proyek_id;
     document.getElementById('editLemburUserProfileId').value = users_profile_id;
     document.getElementById('editLemburTanggal').value = tanggal;
-    document.getElementById('editLemburJam').value = jam;
+
 
     document.getElementById('modalEditLembur').classList.remove('hidden');
 
@@ -113,8 +113,8 @@ async function updateLembur () {
     const mutation = `
         mutation {
             updateLembur(id: ${id}, input: {
-            users_profile_id: ${UserProfileId}
-             proyek_id: ${ProyekId}
+            users_profile_id: ${parseInt(UserProfileId)},
+            proyek_id: ${parseInt(ProyekId)},
             tanggal: "${formattedDate}"
 
             }) {

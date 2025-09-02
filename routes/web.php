@@ -2,7 +2,8 @@
 
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\AuthController\AuthController;
-    use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\JamKerjaController;
+use App\Http\Controllers\UserProfileController;
     use App\Http\Controllers\MemberController;
     use App\Http\Controllers\LemburController;
 
@@ -35,13 +36,15 @@
             Route::post('/userprofile/update/{id}', [UserProfileController::class, 'update'])->name('userprofile.update');
             Route::get('/profile/{id}', [UserProfileController::class, 'edit']) ->name('profile.ofUser');
 
+            Route::post('/userprofile/update', [UserProfileController::class, 'update'])
+            ->name('userprofile.update.self');
 
 
 
 
 
         Route::get('/aktivitas', [AuthController::class, 'aktivitas'])->name('aktivitas');
-        Route::get('/jam_kerja', [AuthController::class, 'jam_kerja'])->name('jam_kerja');
+        Route::get('/jam_kerja', [JamKerjaController::class, 'index'])->name('jam_kerja');
         Route::get('/proyek_user', [AuthController::class, 'proyek_user'])->name('proyek_user');
 
 
