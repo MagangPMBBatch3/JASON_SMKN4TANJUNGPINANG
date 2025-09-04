@@ -5,10 +5,9 @@
         <div class="flex justify-between mb-4">
             <input type="text" id="searchLevel" placeholder="Cari ID atau Nama..."
                 class="border p-2 rounded w-64" oninput="searchLevel()">
-            <button onclick="openAddLevelModal()"
-                class="bg-blue-500 text-white px-4 py-2 rounded">
+            <x-button color="blue" onclick="openAddLevelModal()">
                 Tambah Data
-            </button>
+            </x-button>
         </div>
 
         <div class="mb-4">
@@ -22,31 +21,12 @@
             </button>
         </div>
 
-    <div id="tableAktif">
-        <table class="w-full border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Nama</th>
-                    <th class="p-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="dataLevel"></tbody>
-        </table>
-    </div>
+    {{-- Table Aktif --}}
+<x-table :headers="['ID', 'Nama', 'Aksi']" tbodyId="dataLevel" id="tableAktif" />
 
-    <div id="tableArsip" class="hidden">
-        <table class="w-full border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Nama</th>
-                    <th class="p-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="dataLevelArsip"></tbody>
-        </table>
-    </div>
+{{-- Table Arsip --}}
+<x-table :headers="['ID', 'Nama', 'Aksi']" tbodyId="dataLevelArsip" id="tableArsip" class="hidden" />
+
 
 
     @include('components.level.modal-add')

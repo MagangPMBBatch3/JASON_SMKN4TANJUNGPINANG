@@ -4,9 +4,11 @@ async function loadProyekUserData() {
             allProyekUser {
                 id
                 proyek {
+                id
                 nama
                 }
                 user_profile {
+                id
                 nama_lengkap
                 }
             }
@@ -27,9 +29,11 @@ async function loadProyekUserData() {
             allProyekUserArsip{
                 id
                 proyek {
+                id
                 nama
                 }
                 user_profile {
+                id
                 nama_lengkap
                 }
                 deleted_at
@@ -65,7 +69,7 @@ function renderProyekUserTable(ProyekUser, tableId, isActive) {
         let actions = '';
         if (isActive) {
             actions = `
-                <button onclick="openEditProyekUserModal(${item.id}, '${item.proyek?.nama || '-'}', '${item.user_profile?.nama_lengkap || '-'}')" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
+                <button onclick="openEditProyekUserModal(${item.id}, '${item.proyek?.id || '-'}', '${item.user_profile?.id || '-'}')" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
                 <button onclick="archiveProyekUser(${item.id})" class="bg-red-500 text-white px-2 py-1 rounded">Arsipkan</button>
             `;
     }

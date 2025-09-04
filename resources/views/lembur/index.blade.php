@@ -7,10 +7,9 @@
         <div class="flex justify-between mb-4">
             <input type="text" id="searchLembur" placeholder="Cari ID atau Nama..."
                 class="border p-2 rounded w-64" oninput="searchLembur()">
-            <button onclick="openAddLemburModal()"
-                class="bg-blue-500 text-white px-4 py-2 rounded">
+            <x-button color="blue" onclick="openAddLemburModal()">
                 Tambah Data
-            </button>
+            </x-button>
         </div>
 
         <div class="mb-4">
@@ -21,7 +20,7 @@
             <button onclick="showTab('arsip')" id="tabArsip"
                 class="px-4 py-2 bg-blue-300 text-black rounded-t">
                 Data Arsip
-            </button>   
+            </button>
         </div>
 
         {{-- TABEL AKTIF --}}

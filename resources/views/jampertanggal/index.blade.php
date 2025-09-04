@@ -5,10 +5,9 @@
         <div class="flex justify-between mb-4">
             <input type="text" id="searchJamPerTanggal" placeholder="Cari ID atau Nama..."
                 class="border p-2 rounded w-64" oninput="searchJamPerTanggal()">
-            <button onclick="openAddJamPerTanggalModal()"
-                class="bg-blue-500 text-white px-4 py-2 rounded">
+            <x-button color="blue" onclick="openAddJamPerTanggalModal()">
                 Tambah Data
-            </button>
+            </x-button>
         </div>
 
         <div class="mb-4">
@@ -22,37 +21,12 @@
             </button>
         </div>
 
-    <div id="tableAktif" class="overflow-x-auto">
-        <table class="w-full border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Profil User</th>
-                    <th class="p-2 border">Nama Proyek</th>
-                    <th class="p-2 border">Tanggal</th>
-                    <th class="p-2 border">Jam</th>
-                    <th class="p-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="dataJamPerTanggal"></tbody>
-        </table>
-    </div>
+    {{-- Table Aktif --}}
+<x-table :headers="['ID', 'User Profile', 'Proyek', 'Tanggal', 'Jam', 'Aksi']" tbodyId="dataJamPerTanggal" id="tableAktif" />
 
-    <div id="tableArsip" class="hidden overflow-x-auto">
-        <table class="w-full border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Profil User</th>
-                    <th class="p-2 border">Nama Proyek</th>
-                    <th class="p-2 border">Tanggal</th>
-                    <th class="p-2 border">Jam</th>
-                    <th class="p-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="dataJamPerTanggalArsip"></tbody>
-        </table>
-    </div>
+{{-- Table Arsip --}}
+<x-table :headers="['ID', 'User Profile', 'Proyek', 'Tanggal', 'Jam', 'Aksi']" tbodyId="dataJamPerTanggalArsip" id="tableArsip" class="hidden" />
+
 
     @include('components.JamPerTanggal.modal-add')
     @include("components.JamPerTanggal.modal-edit")

@@ -163,14 +163,14 @@ function renderJamKerjaTable(JamKerja, containerId, isActive) {
                         ${item.users_profile?.nama_lengkap || '-'}
                     </h4>
                     <p class="text-gray-600">No Wbs: ${item.no_wbs}</p>
-                    <p class="text-gray-600">Kode Proyek: ${item.kode_proyek}</p>
+                    <p class="text-gray-600">Kode: ${item.kode_proyek}</p>
                     <p class="text-gray-600">Proyek: ${item.proyek?.nama || '-'}</p>
                     <p class="text-gray-600">Aktivitas: ${item.aktivitas?.nama || '-'}</p>
                     <p class="text-gray-600">Tanggal: ${item.tanggal}</p>
-                    <p class="text-gray-600">Tanggal: ${item.jumlah_jam}</p>
-                    <p class="text-gray-600">Tanggal: ${item.keterangan}</p>
-                    <p class="text-gray-600">Status Jam Kerja: ${item.status_jam_kerja?.nama || '-'}</p>
-                    <p class="text-gray-600">Mode Jam Kerja: ${item.mode_jam_kerja?.nama || '-'}</p>
+                    <p class="text-gray-600">Jumlah Jam: ${item.jumlah_jam}</p>
+                    <p class="text-gray-600">Keterangan: ${item.keterangan}</p>
+                    <p class="text-gray-600">Status: ${item.status_jam_kerja?.nama || '-'}</p>
+                    <p class="text-gray-600">Mode: ${item.mode_jam_kerja?.nama || '-'}</p>
 
                 </div>
             </div>

@@ -4,6 +4,7 @@ async function loadAktivitasData() {
             allAktivitas {
                 id
                 bagian {
+                id
                 nama
                 }
                 no_wbs
@@ -27,6 +28,7 @@ async function loadAktivitasData() {
             allAktivitasArsip{
                 id
                 bagian {
+                id
                 nama
                 }
                 no_wbs
@@ -64,7 +66,7 @@ function renderAktivitasTable(Aktivitas, tableId, isActive) {
         let actions = '';
         if (isActive) {
             actions = `
-                <button onclick="openEditAktivitasModal(${item.id}, '${item.bagian?.nama || '-'}', '${item.no_wbs}', '${item.nama}')" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
+                <button onclick="openEditAktivitasModal(${item.id}, '${item.bagian?.id || '-'}', '${item.no_wbs}', '${item.nama}')" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
                 <button onclick="archiveAktivitas(${item.id})" class="bg-red-500 text-white px-2 py-1 rounded">Arsipkan</button>
             `;
     }

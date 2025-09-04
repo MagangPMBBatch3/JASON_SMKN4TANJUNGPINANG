@@ -64,8 +64,8 @@ async function loadUserProfileOptionsForEdit() {
 
 
 async function openEditProyekUserModal(id, proyek_id, users_profile_id) {
-  loadProyekOptionsForEdit();
-   loadUserProfileOptionsForEdit();
+    await loadProyekOptionsForEdit();
+    await loadUserProfileOptionsForEdit();
 
 
     document.getElementById('editProyekUserId').value = id;

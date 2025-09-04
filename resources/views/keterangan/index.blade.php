@@ -5,10 +5,9 @@
         <div class="flex justify-between mb-4">
             <input type="text" id="searchKeterangan" placeholder="Cari ID atau Nama..."
                 class="border p-2 rounded w-64" oninput="searchKeterangan()">
-            <button onclick="openAddKeteranganModal()"
-                class="bg-blue-500 text-white px-4 py-2 rounded">
+            <x-button color="blue" onclick="openAddKeteranganModal()">
                 Tambah Data
-            </button>
+            </x-button>
         </div>
 
         <div class="mb-4">
@@ -22,35 +21,12 @@
             </button>
         </div>
 
-    <div id="tableAktif" class="overflow-x-auto">
-        <table class="w-full border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Nama Bagian</th>
-                    <th class="p-2 border">Nama Proyek</th>
-                    <th class="p-2 border">Tanggal</th>
-                    <th class="p-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="dataKeterangan"></tbody>
-        </table>
-    </div>
+   {{-- Table Aktif --}}
+<x-table :headers="['ID', 'Bagian ID', 'Proyek ID', 'Tanggal', 'Aksi']" tbodyId="dataKeterangan" id="tableAktif" />
 
-    <div id="tableArsip" class="hidden overflow-x-auto">
-        <table class="w-full border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Nama Bagian</th>
-                    <th class="p-2 border">Nama Proyek</th>
-                    <th class="p-2 border">Tanggal</th>
-                    <th class="p-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="dataKeteranganArsip"></tbody>
-        </table>
-    </div>
+{{-- Table Arsip --}}
+<x-table :headers="['ID', 'Bagian ID', 'Proyek ID', 'Tanggal', 'Aksi']" tbodyId="dataKeteranganArsip" id="tableArsip" class="hidden" />
+
 
     @include('components.Keterangan.modal-add')
     @include("components.Keterangan.modal-edit")

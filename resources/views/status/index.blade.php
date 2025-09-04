@@ -5,10 +5,9 @@
         <div class="flex justify-between mb-4">
             <input type="text" id="searchStatus" placeholder="Cari ID atau Nama..."
                 class="border p-2 rounded w-64" oninput="searchStatus()">
-            <button onclick="openAddStatusModal()"
-                class="bg-blue-500 text-white px-4 py-2 rounded">
+            <x-button color="blue" onclick="openAddStatusModal()">
                 Tambah Data
-            </button>
+            </x-button>
         </div>
 
         <div class="mb-4">
@@ -22,31 +21,12 @@
             </button>
         </div>
 
-    <div id="tableAktif">
-        <table class="w-full border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Nama</th>
-                    <th class="p-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="dataStatus"></tbody>
-        </table>
-    </div>
+    {{-- Table Aktif --}}
+    <x-table :headers="['ID', 'Nama', 'Aksi']" tbodyId="dataStatus" id="tableAktif" />
 
-    <div id="tableArsip" class="hidden">
-        <table class="w-full border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Nama</th>
-                    <th class="p-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="dataStatusArsip"></tbody>
-        </table>
-    </div>
+{{-- Table Arsip --}}
+    <x-table :headers="['ID', 'Nama', 'Aksi']" tbodyId="dataStatusArsip" id="tableArsip" class="hidden" />
+
 
 
     @include('components.status.modal-add')

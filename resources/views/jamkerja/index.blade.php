@@ -5,10 +5,9 @@
         <div class="flex justify-between mb-4">
             <input type="text" id="searchJamKerja" placeholder="Cari ID atau Nama..."
                 class="border p-2 rounded w-64" oninput="searchJamKerja()">
-            <button onclick="openAddJamKerjaModal()"
-                class="bg-blue-500 text-white px-4 py-2 rounded">
+            <x-button onclick="openAddJamKerjaModal()" color="blue">
                 Tambah Data
-            </button>
+            </x-button>
         </div>
 
         <div class="mb-4">
@@ -52,7 +51,7 @@
                                 No Wbs: {{ $jamkerja->no_wbs}}
                             </p>
                             <p class="text-gray-600">
-                                Kode Proyek: {{ $jamkerja->kode_proyek}}
+                                Kode: {{ $jamkerja->kode_proyek}}
                             </p>
                              <p class="text-gray-600">
                                 Proyek: {{ $jamkerja->proyek->nama ?? '-' }}
@@ -70,10 +69,10 @@
                                 Keterangan: {{ $jamkerja->keterangan }}
                             </p>
                             <p class="text-gray-600">
-                                Status Jam Kerja: {{ $jamkerja->status_jam_kerja->nama ?? '-' }}
+                                Status: {{ $jamkerja->status_jam_kerja->nama ?? '-' }}
                             </p>
                             <p class="text-gray-600">
-                                Mode Jam Kerja: {{ $jamkerja->mode_jam_kerja->nama ?? '-' }}
+                                Mode: {{ $jamkerja->mode_jam_kerja->nama ?? '-' }}
                             </p>
 
                         </div>
@@ -117,26 +116,32 @@
                                 {{ $jamkerja->users_profile->nama_lengkap ?? '-' }}
                             </h4>
                             <p class="text-gray-600">
-                                Proyek: {{ $jamkerja->proyek->nama ?? '-' }}
-                            </p>
-                            <p class="text-gray-600">
                                 No Wbs: {{ $jamkerja->no_wbs}}
                             </p>
                             <p class="text-gray-600">
                                 Kode Proyek: {{ $jamkerja->kode_proyek}}
                             </p>
+                             <p class="text-gray-600">
+                                Proyek: {{ $jamkerja->proyek->nama ?? '-' }}
+                            </p>
                             <p class="text-gray-600">
                                 Aktivitas: {{ $jamkerja->aktivitas->nama ?? '-' }}
                             </p>
-                            <p class="text-gray-600">
-                                Status Jam Kerja: {{ $jamkerja->status_jam_kerja->nama ?? '-' }}
-                            </p>
-                            <p class="text-gray-600">
-                                Mode Jam Kerja: {{ $jamkerja->mode_jam_kerja->nama ?? '-' }}
-                            </p>
-                            <p class="text-gray-600">
+                             <p class="text-gray-600">
                                 Tanggal: {{ $jamkerja->tanggal }}
                             </p>
+                             <p class="text-gray-600">
+                                Jumlah Jam: {{ $jamkerja->jumlah_jam }}
+                            </p>
+                            <p class="text-gray-600">
+                                Keterangan: {{ $jamkerja->keterangan }}
+                            <p class="text-gray-600">
+                                Status: {{ $jamkerja->status_jam_kerja->nama ?? '-' }}
+                            </p>
+                            <p class="text-gray-600">
+                                Mode: {{ $jamkerja->mode_jam_kerja->nama ?? '-' }}
+                            </p>
+
                         </div>
                     </div>
                 @endforeach

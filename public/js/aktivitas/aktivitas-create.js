@@ -32,9 +32,11 @@
 
 
 
-    function openAddAktivitasModal () {
-        document.getElementById('modalAddAktivitas').classList.remove('hidden');
-        loadBagianOptions();
+    async function openAddAktivitasModal () {
+      await loadBagianOptions();
+
+      
+      document.getElementById('modalAddAktivitas').classList.remove('hidden');
     }
 
     function closeAddAktivitasModal () {

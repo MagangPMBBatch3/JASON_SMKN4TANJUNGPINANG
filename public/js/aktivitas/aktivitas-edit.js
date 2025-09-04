@@ -31,8 +31,8 @@ async function loadBagianOptionsForEdit() {
 
 
 
-function openEditAktivitasModal(id, bagian_id, no_wbs, nama) {
-    loadBagianOptionsForEdit();
+async function openEditAktivitasModal(id, bagian_id, no_wbs, nama) {
+    await loadBagianOptionsForEdit();
     document.getElementById('editAktivitasId').value = id;
     document.getElementById('editAktivitasBagianId').value = bagian_id;
     document.getElementById('editAktivitasNoWbs').value = no_wbs;

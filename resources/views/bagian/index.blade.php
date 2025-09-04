@@ -5,23 +5,14 @@
         <div class = "flex justify-between mb-4">
             <input type="text" id="search" placeholder="Cari ID atau Nama..."
                 class="border p-2 rounded w-64" oninput="searchBagian()">
-            <button onclick="openAddModal()"
-                class="bg-blue-500 text-white px-4 py-2 rounded">
+            <x-button color="blue" onclick="openAddModal()">
                 Tambah Data
-            </button>
+            </x-button>
         </div>
 
-        <table class ="w-full border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Nama</th>
-                    <th class="p-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="dataBagian"></tbody>
-        </table>
-    </div>
+       {{-- Table Aktif --}}
+<x-table :headers="['ID', 'Nama', 'Aksi']" tbodyId="dataBagian" id="tableAktif" />
+
 
     @include('components.bagian.modal-add')
 

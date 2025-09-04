@@ -5,10 +5,9 @@
         <div class="flex justify-between mb-4">
             <input type="text" id="searchProyekUser" placeholder="Cari ID atau Nama..."
                 class="border p-2 rounded w-64" oninput="searchProyekUser()">
-            <button onclick="openAddProyekUserModal()"
-                class="bg-blue-500 text-white px-4 py-2 rounded">
+            <x-button color="blue" onclick="openAddProyekUserModal()">
                 Tambah Data
-            </button>
+            </x-button>
         </div>
 
         <div class="mb-4">
@@ -22,33 +21,12 @@
             </button>
         </div>
 
-    <div id="tableAktif" class="overflow-x-auto">
-        <table class="w-full border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Nama Proyek</th>
-                    <th class="p-2 border">Profil User</th>
-                    <th class="p-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="dataProyekUser"></tbody>
-        </table>
-    </div>
+{{-- Table Aktif --}}
+<x-table :headers="['ID', 'Proyek ID', 'User Profile', 'Aksi']" tbodyId="dataProyekUser" id="tableAktif" />
 
-    <div id="tableArsip" class="hidden overflow-x-auto">
-        <table class="w-full border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Nama Proyek</th>
-                    <th class="p-2 border">Profil User</th>
-                    <th class="p-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="dataProyekUserArsip"></tbody>
-        </table>
-    </div>
+{{-- Table Arsip --}}
+<x-table :headers="['ID', 'Proyek ID', 'User Profile', 'Aksi']" tbodyId="dataProyekUserArsip" id="tableArsip" class="hidden" />
+
 
     @include('components.ProyekUser.modal-add')
     @include("components.ProyekUser.modal-edit")

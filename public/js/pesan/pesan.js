@@ -9,7 +9,9 @@ async function loadPesanData() {
                 parent_id
                 tgl_pesan
                 jenis_pesan {
-                nama }
+                id
+                nama
+                 }
             }
         }
     `;
@@ -33,6 +35,7 @@ async function loadPesanData() {
                 parent_id
                 tgl_pesan
                 jenis_pesan {
+                id
                 nama
                 }
                 deleted_at
@@ -68,7 +71,7 @@ function renderPesanTable(Pesan, tableId, isActive) {
         let actions = '';
         if (isActive) {
             actions = `
-                <button onclick="openEditPesanModal(${item.id}, '${item.pengirim}', '${item.penerima}', '${item.isi}', '${item.parent_id}', '${item.tgl_pesan}', '${item.jenis_pesan?.nama || '-'}')" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
+                <button onclick="openEditPesanModal(${item.id}, '${item.pengirim}', '${item.penerima}', '${item.isi}', '${item.parent_id}', '${item.tgl_pesan}', '${item.jenis_pesan?.id || '-'}')" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
                 <button onclick="archivePesan(${item.id})" class="bg-red-500 text-white px-2 py-1 rounded">Arsipkan</button>
             `;
     }

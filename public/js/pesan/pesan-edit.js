@@ -23,8 +23,8 @@ async function loadJenisPesanOptionsForEdit() {
         select.remove(1);
     }
 
-    data.data.allJenisPesan.forEach((jenis_pesan) => {
-        const option = new Option(jenis_pesan.nama, jenis_pesan.id);
+    data.data.allJenisPesan.forEach((JenisPesan) => {
+        const option = new Option(JenisPesan.nama, JenisPesan.id);
         select.add(option);
     });
 }
@@ -32,6 +32,9 @@ async function loadJenisPesanOptionsForEdit() {
 
 
 async function openEditPesanModal(id, pengirim, penerima, isi, parentId, TglPesan, jenisId) {
+
+    await loadJenisPesanOptionsForEdit();
+
     document.getElementById('editPesanId').value = id;
     document.getElementById('editPesanPengirim').value = pengirim;
     document.getElementById('editPesanPenerima').value = penerima;
@@ -42,7 +45,6 @@ async function openEditPesanModal(id, pengirim, penerima, isi, parentId, TglPesa
     let formattedForInput = TglPesan.replace(" ", "T").slice(0, 16);
     document.getElementById('editPesanTglPesan').value = formattedForInput;
 
-    await loadJenisPesanOptionsForEdit();
 
     document.getElementById('modalEditPesan').classList.remove('hidden');
 

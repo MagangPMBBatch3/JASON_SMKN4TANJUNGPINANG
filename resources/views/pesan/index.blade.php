@@ -5,10 +5,9 @@
         <div class="flex justify-between mb-4">
             <input type="text" id="searchPesan" placeholder="Cari ID atau Nama..."
                 class="border p-2 rounded w-64" oninput="searchPesan()">
-            <button onclick="openAddPesanModal()"
-                class="bg-blue-500 text-white px-4 py-2 rounded">
+            <x-button color="blue" onclick="openAddPesanModal()">
                 Tambah Data
-            </button>
+            </x-button>
         </div>
 
         <div class="mb-4">
@@ -22,41 +21,12 @@
             </button>
         </div>
 
-    <div id="tableAktif" class="overflow-x-auto">
-        <table class="w-full border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Pengirim</th>
-                    <th class="p-2 border">Penerima</th>
-                    <th class="p-2 border">Isi</th>
-                    <th class="p-2 border">Parent ID</th>
-                    <th class="p-2 border">Tanggal</th>
-                    <th class="p-2 border">Jenis Pesan</th>
-                    <th class="p-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="dataPesan"></tbody>
-        </table>
-    </div>
+    {{-- Table Aktif --}}
+<x-table :headers="['ID', 'Pengirim', 'Penerima', 'Isi', 'Parent ID', 'Tanggal', 'Jenis ID', 'Aksi']" tbodyId="dataPesan" id="tableAktif" />
 
-    <div id="tableArsip" class="hidden overflow-x-auto">
-        <table class="w-full border">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2 border">ID</th>
-                    <th class="p-2 border">Pengirim</th>
-                    <th class="p-2 border">Penerima</th>
-                    <th class="p-2 border">Isi</th>
-                    <th class="p-2 border">Parent ID</th>
-                    <th class="p-2 border">Tanggal</th>
-                    <th class="p-2 border">Jenis Pesan</th>
-                    <th class="p-2 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="dataPesanArsip"></tbody>
-        </table>
-    </div>
+{{-- Table Arsip --}}
+<x-table :headers="['ID', 'Pengirim', 'Penerima', 'Isi', 'Parent ID', 'Tanggal', 'Jenis ID', 'Aksi']" tbodyId="dataPesanArsip" id="tableArsip" class="hidden" />
+
 
     @include('components.Pesan.modal-add')
     @include("components.Pesan.modal-edit")
