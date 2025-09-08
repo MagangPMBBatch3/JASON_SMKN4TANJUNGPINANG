@@ -155,7 +155,7 @@ async function searchUser () {
     if (!isNaN(keyword)) {
         query = `
             query {
-                User(id: ${keyword}) {
+                user(id: ${keyword}) {
                     id
                     nama
                     email
@@ -169,11 +169,11 @@ async function searchUser () {
             body: JSON.stringify({ query })
         });
         const data = await res.json();
-        renderUserTable(data.data.User ? [data.data.User] : [], 'dataUser', true);
+        renderUserTable(data.data.user ? [data.data.user] : [], 'dataUser', true);
     } else {
         query = `
             query {
-                UserByNama(nama: "%${keyword}%") {
+                allUsers {
                     id
                     nama
                     email
@@ -187,7 +187,7 @@ async function searchUser () {
             body: JSON.stringify({query})
         });
         const data = await res.json();
-        renderUserTable(data.data.UserByNama, 'dataUser', true);
+        renderUserTable(data.data.allUsers, 'dataUser', true);
     }
 }
 document.addEventListener('DOMContentLoaded', loadUserData);

@@ -1,9 +1,19 @@
 <x-layouts.main title="Dashboard">
 
-   {{-- Welcome Card --}}
-    <div class="bg-white p-6 rounded-xl shadow-md mb-6">
+    {{-- Welcome Card --}}
+   <div class="bg-white p-6 rounded-xl shadow-md mb-6 flex items-center gap-4">
+
+       {{-- Foto Profil --}}
+       <div class="w-28 h-28 rounded-full overflow-hidden border-2 border-gray-300">
+            <img src="{{ $userProfile->foto ? asset('storage/'.$userProfile->foto) : asset('storage/images/default.jpg') }}"
+                            alt="Foto Profil"
+                            class="w-32 h-32 rounded-full object-cover border-4 border-gray-200 shadow-lg"
+                            id="profileImagePreview">
+       </div>
+        <div class="flex flex-col">
         <h2 class="text-2xl font-bold text-gray-800">Selamat Datang 🎉</h2>
         <p class="text-gray-600 mt-1">Anda login sebagai <strong>{{ Auth::user()->nama }}</strong></p>
+    </div>
     </div>
 
     {{-- Stats Section --}}
