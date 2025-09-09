@@ -3,10 +3,17 @@ async function loadPesanData() {
         query {
             allPesan {
                 id
-                pengirim
-                penerima
+                user_pengirim
+                {
+                id
+                nama
+                }
+                user_penerima
+                {
+                id
+                nama
+                }
                 isi
-                parent_id
                 tgl_pesan
                 jenis_pesan {
                 id
@@ -29,10 +36,17 @@ async function loadPesanData() {
         query{
             allPesanArsip{
                 id
-                 pengirim
-                penerima
+                user_pengirim
+                {
+                id
+                nama
+                }
+                user_penerima
+                {
+                id
+                nama
+                }
                 isi
-                parent_id
                 tgl_pesan
                 jenis_pesan {
                 id
@@ -71,7 +85,7 @@ function renderPesanTable(Pesan, tableId, isActive) {
         let actions = '';
         if (isActive) {
             actions = `
-                <button onclick="openEditPesanModal(${item.id}, '${item.pengirim}', '${item.penerima}', '${item.isi}', '${item.parent_id}', '${item.tgl_pesan}', '${item.jenis_pesan?.id || '-'}')" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
+                <button onclick="openEditPesanModal(${item.id}, '${item.user_pengirim?.id || '-'}', '${item.user_penerima?.id || '-'}', '${item.isi}', '${item.tgl_pesan}', '${item.jenis_pesan?.id || '-'}')" class="bg-yellow-500 text-white px-2 py-1 rounded">Edit</button>
                 <button onclick="archivePesan(${item.id})" class="bg-red-500 text-white px-2 py-1 rounded">Arsipkan</button>
             `;
     }
@@ -85,10 +99,9 @@ function renderPesanTable(Pesan, tableId, isActive) {
     tbody.innerHTML += `
     <tr>
         <td class="border p-2">${item.id}</td>
-        <td class="border p-2">${item.pengirim}</td>
-        <td class="border p-2">${item.penerima}</td>
+        <td class="border p-2">${item.user_pengirim?.nama || '-'}</td>
+        <td class="border p-2">${item.user_penerima?.nama || '-'}</td>
         <td class="border p-2">${item.isi}</td>
-        <td class="border p-2">${item.parent_id}</td>
         <td class="border p-2">${item.tgl_pesan}</td>
         <td class="border p-2">${item.jenis_pesan?.nama || '-'}</td>
         <td class="border p-2">${actions}</td>
@@ -158,10 +171,17 @@ async function searchPesan () {
             query {
                 Pesan(id: ${keyword}) {
                     id
-                     pengirim
-                penerima
+                     user_pengirim
+                     {
+                     id
+                     nama
+                     }
+                user_penerima
+                {
+                id
+                nama
+                }
                 isi
-                parent_id
                 tgl_pesan
                 jenis_pesan {
                 nama
@@ -182,10 +202,17 @@ async function searchPesan () {
             query {
                 PesanByPengirim(pengirim: "%${keyword}%") {
                     id
-                     pengirim
-                penerima
+                    user_pengirim
+                     {
+                    id
+                     nama
+                     }
+                user_penerima
+                {
+                id
+                nama
+                }
                 isi
-                parent_id
                 tgl_pesan
                 jenis_pesan {
                 nama

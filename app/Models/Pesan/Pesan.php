@@ -16,7 +16,6 @@ class Pesan extends Model
         'pengirim',
         'penerima',
         'isi',
-        'parent_id',
         'tgl_pesan',
         'jenis_id',
     ];
@@ -29,5 +28,11 @@ class Pesan extends Model
 
     public function jenis_pesan() {
         return $this->belongsTo(\App\Models\JenisPesan\JenisPesan::class,'jenis_id', 'id');
+    }
+    public function user_pengirim() {
+        return $this->belongsTo(\App\Models\User::class,'pengirim', 'id');
+    }
+    public function user_penerima() {
+        return $this->belongsTo(\App\Models\User::class,'penerima', 'id');
     }
 }

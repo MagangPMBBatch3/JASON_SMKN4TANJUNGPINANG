@@ -29,12 +29,51 @@
         });
     }
 
+    async function loadUserOptions() {
+        const query = `
+            query {
+                allUsers {
+                    id
+                    nama
+                }
+            }
+        `;
+
+        const response = await fetch("/graphql", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ query }),
+        });
+
+        const data = await response.json();
+        const selectPenerima = document.getElementById("addPesanPenerima");
+        const selectPengirim = document.getElementById("addPesanPengirim");
+
+        // Clear existing options except the first
+        while (selectPenerima.options.length > 1) {
+            selectPenerima.remove(1);
+        }
+        while (selectPengirim.options.length > 1) {
+            selectPengirim.remove(1);
+        }
+
+        data.data.allUsers.forEach((user) => {
+            const optionPenerima = new Option(user.nama, user.id);
+            const optionPengirim = new Option(user.nama, user.id);
+            selectPenerima.add(optionPenerima);
+            selectPengirim.add(optionPengirim);
+        });
+    }
 
 
 
-    function openAddPesanModal () {
+
+    async function openAddPesanModal () {
         document.getElementById('modalAddPesan').classList.remove('hidden');
-        loadJenisPesanOptions();
+        await loadJenisPesanOptions();
+        await loadUserOptions();
     }
 
     function closeAddPesanModal () {
@@ -42,7 +81,6 @@
         document.getElementById('addPesanPengirim').value='';
         document.getElementById('addPesanPenerima').value='';
         document.getElementById('addPesanIsi').value='';
-        document.getElementById('addPesanParentId').value='';
         document.getElementById('addPesanTglPesan').value='';
         document.getElementById('addPesanJenisId').value='';
     }
@@ -51,9 +89,8 @@
     const pengirim = document.getElementById('addPesanPengirim').value.trim();
     const penerima = document.getElementById('addPesanPenerima').value.trim();
     const isi = document.getElementById('addPesanIsi').value.trim();
-    const parentId = document.getElementById('addPesanParentId').value.trim();
     const rawDate = document.getElementById('addPesanTglPesan').value.trim();
-        
+
 
     // ubah ke format DB ("2025-08-21 09:35:00")
     let formattedDate = rawDate.replace("T", " ") + ":00";
@@ -72,10 +109,6 @@
         alert('Isi Pesan harus diisi');
         return;
     }
-     if (!parentId) {
-        alert('Parent Id harus diisi');
-        return;
-    }
      if (!rawDate) {
         alert('Tanggal Pesan harus diisi');
         return;
@@ -91,15 +124,19 @@
             pengirim: "${pengirim}"
             penerima: "${penerima}"
             isi: "${isi}"
-            parent_id: ${parseInt(parentId)}
             tgl_pesan: "${formattedDate}"
             jenis_id: ${parseInt(jenisId)}
             }) {
                 id
-                pengirim
-                penerima
+                user_pengirim
+                {
+                nama
+                }
+                user_penerima
+                {
+                nama
+                }
                 isi
-                parent_id
                 tgl_pesan
                 jenis_pesan {
                 nama

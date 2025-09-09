@@ -8,7 +8,7 @@ async function loadProyekUserData() {
                 nama
                 }
                 user_profile {
-                id
+                id      
                 nama_lengkap
                 }
             }

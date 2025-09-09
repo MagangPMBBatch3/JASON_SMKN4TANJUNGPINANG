@@ -22,10 +22,10 @@
         </div>
 
     {{-- Table Aktif --}}
-<x-table :headers="['ID', 'Pengirim', 'Penerima', 'Isi', 'Parent ID', 'Tanggal', 'Jenis ID', 'Aksi']" tbodyId="dataPesan" id="tableAktif" />
+<x-table :headers="['ID', 'Pengirim', 'Penerima', 'Isi', 'Tanggal', 'Jenis ID', 'Aksi']" tbodyId="dataPesan" id="tableAktif" />
 
 {{-- Table Arsip --}}
-<x-table :headers="['ID', 'Pengirim', 'Penerima', 'Isi', 'Parent ID', 'Tanggal', 'Jenis ID', 'Aksi']" tbodyId="dataPesanArsip" id="tableArsip" class="hidden" />
+<x-table :headers="['ID', 'Pengirim', 'Penerima', 'Isi',  'Tanggal', 'Jenis ID', 'Aksi']" tbodyId="dataPesanArsip" id="tableArsip" class="hidden" />
 
 
     @include('components.Pesan.modal-add')

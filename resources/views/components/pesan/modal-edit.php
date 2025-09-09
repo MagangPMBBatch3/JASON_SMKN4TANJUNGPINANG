@@ -3,31 +3,28 @@
         <div class="bg-white rounded-lg p-6 w-80">
             <h3 class="text-lg font-semibold mb-4">Edit Pesan</h3>
 
-            <input
-                type="text"
-                placeholder="Edit Pengirim"
-                id="editPesanPengirim"
-                class="w-full px-4 py-2 border rounded mb-4"
-            >
 
-             <input
-                type="text"
-                placeholder="Penerima"
-                id="editPesanPenerima"
-                class="w-full px-4 py-2 border rounded mb-4"
-            >
+
+
+              <select
+                    id="editPesanPengirim"
+                    name="pengirim"
+                    class="w-full px-4 py-2 border rounded mb-4">
+                    <option value="">Edit Pengirim</option>
+                </select>
+
+                <select
+                    id="editPesanPenerima"
+                    name="penerima"
+                    class="w-full px-4 py-2 border rounded mb-4">
+                    <option value="">Edit Penerima</option>
+                </select>
+
 
             <input
                 type="text"
                 placeholder="Isi"
                 id="editPesanIsi"
-                class="w-full px-4 py-2 border rounded mb-4"
-            >
-
-            <input
-                type="text"
-                placeholder="Parent ID"
-                id="editPesanParentId"
                 class="w-full px-4 py-2 border rounded mb-4"
             >
 

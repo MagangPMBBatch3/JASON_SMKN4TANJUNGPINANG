@@ -29,26 +29,61 @@ async function loadJenisPesanOptionsForEdit() {
     });
 }
 
+async function loadUserOptionsForEdit() {
+    const query = `
+        query {
+            allUsers {
+                id
+                nama
+            }
+        }
+    `;
+
+    const response = await fetch("/graphql", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query }),
+    });
+
+    const data = await response.json();
+    const selectPenerima = document.getElementById("editPesanPenerima");
+    const selectPengirim = document.getElementById("editPesanPengirim");
+
+    // Clear existing options except the first
+    while (selectPenerima.options.length > 1) {
+        selectPenerima.remove(1);
+    }
+    while (selectPengirim.options.length > 1) {
+        selectPengirim.remove(1);
+    }
+
+    data.data.allUsers.forEach((user) => {
+        const optionPenerima = new Option(user.nama, user.id);
+        const optionPengirim = new Option(user.nama, user.id);
+        selectPenerima.add(optionPenerima);
+        selectPengirim.add(optionPengirim);
+    });
+}
 
 
-async function openEditPesanModal(id, pengirim, penerima, isi, parentId, TglPesan, jenisId) {
+
+async function openEditPesanModal(id, pengirim, penerima, isi, TglPesan, jenisId) {
 
     await loadJenisPesanOptionsForEdit();
+    await loadUserOptionsForEdit();
 
     document.getElementById('editPesanId').value = id;
     document.getElementById('editPesanPengirim').value = pengirim;
     document.getElementById('editPesanPenerima').value = penerima;
     document.getElementById('editPesanIsi').value = isi;
-    document.getElementById('editPesanParentId').value = parentId;
     document.getElementById('editPesanJenisId').value = jenisId;
 
     let formattedForInput = TglPesan.replace(" ", "T").slice(0, 16);
     document.getElementById('editPesanTglPesan').value = formattedForInput;
 
-
     document.getElementById('modalEditPesan').classList.remove('hidden');
-
-
 }
 function closeEditPesanModal () {
     document.getElementById('modalEditPesan').classList.add('hidden');
@@ -59,7 +94,6 @@ async function updatePesan () {
     const pengirim = document.getElementById('editPesanPengirim').value.trim();
     const penerima = document.getElementById('editPesanPenerima').value.trim();
     const isi = document.getElementById('editPesanIsi').value.trim();
-    const parentId = document.getElementById('editPesanParentId').value.trim();
 
     let rawDate = document.getElementById('editPesanTglPesan').value;
 
@@ -80,10 +114,6 @@ async function updatePesan () {
         alert('Isi Pesan harus diisi');
         return;
     }
-     if (!parentId) {
-        alert('Parent Id harus diisi');
-        return;
-    }
      if (!rawDate) {
         alert('Tanggal Pesan harus diisi');
         return;
@@ -99,15 +129,19 @@ async function updatePesan () {
             pengirim: "${pengirim}"
             penerima: "${penerima}"
             isi: "${isi}"
-            parent_id: ${parseInt(parentId)}
             tgl_pesan: "${formattedDate}"
             jenis_id: ${parseInt(jenisId)}
             }) {
                 id
-                pengirim
-                penerima
+                user_pengirim
+                {
+                nama
+                }
+                user_penerima
+                {
+                nama
+                }
                 isi
-                parent_id
                 tgl_pesan
                 jenis_pesan {
                 nama
