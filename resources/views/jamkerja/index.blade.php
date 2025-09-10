@@ -1,4 +1,5 @@
 <x-layouts.main title="Data Jam Kerja">
+     <x-slot name="pageTitle">Daftar Jam Kerja</x-slot>
     <div class="bg-white p-4 rounded shadow w-full">
         <h1 class="text-2xl font-bold mb-4">Data Jam Kerja</h1>
 

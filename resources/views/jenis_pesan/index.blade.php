@@ -1,4 +1,5 @@
 <x-layouts.main title="Data Jenis Pesan">
+     <x-slot name="pageTitle">Daftar Jenis Pesan</x-slot>
     <div class="bg-white p-4 rounded shadow w-full">
         <h1 class="text-2xl font-bold mb-4">Data Jenis Pesan</h1>
 

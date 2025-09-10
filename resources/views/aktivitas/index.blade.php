@@ -1,4 +1,5 @@
 <x-layouts.main title="Data Aktivitas">
+     <x-slot name="pageTitle">Daftar Aktivitas</x-slot>
     <div class="bg-white p-4 rounded shadow w-full">
         <h1 class="text-2xl font-bold mb-4">Data Aktivitas</h1>
 
